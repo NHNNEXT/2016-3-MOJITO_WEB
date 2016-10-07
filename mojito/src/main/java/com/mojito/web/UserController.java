@@ -14,4 +14,9 @@ public class UserController {
 	public String signup(){
 		return "signup_page";
 	}
+	
+	@GetMapping("/find")
+	public String findPassword(){
+		return "find_password_page";
+	}
 }
