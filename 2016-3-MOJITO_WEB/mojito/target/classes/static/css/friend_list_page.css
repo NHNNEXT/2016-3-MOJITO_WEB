@@ -65,3 +65,41 @@
   height: 20px;
   margin-right: 5px;
 }
+
+.choice_member_type{
+	border-collapse:collapse;
+	padding: 0px;
+	margin: 0px;
+	text-align: center;
+	width: 500px;
+	
+}
+
+
+.member_type{
+	margin: 0px;
+	border: solid;
+	border-width: 1px;
+	width: 250px;
+	height: 40px;
+	font-size: 20px;
+	background-color: white;	
+}
+
+
+.delete{
+	padding: 5px;
+	border-radius: 15%;
+}
+
+.name{
+	padding-left: 10px;
+	width: 390px;
+}
+
+.delete{
+	color: white;
+	background-color: red;	
+	text-align: left;
+}
+

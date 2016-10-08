@@ -7,7 +7,7 @@
 }
 
 .demo-card-wide.mdl-card {
-  width: 512px;
+  width: 700px;
   margin: 40px auto;
 }
 
@@ -46,22 +46,52 @@
   color: #00C7B3;
 }
 
-.social-login{
-  margin: 20px auto;
+
+
+
+#show_my_meeting{
+	margin: 20px;
+	display:block;
 }
 
-.kakao-login-button{
-  background-color: #FFE552;
-  text-align: center;
-  padding: 15px;
-  margin: 0 30px;
+.meeting_category{
+	margin: 20px;
 }
 
-.kakao-login-button{
-  font-weight: bold;
+
+.create_meeting_subject{
+	margin-bottom: 0px;
+	margin-left: 50px;
 }
 
-.kakao-login-button img{
-  height: 20px;
-  margin-right: 5px;
+.friend_picture{
+	display: inline;
 }
+
+.meeting_information{
+	padding-bottom: 25px;
+	padding-top:15px;
+	background-color: #EEE;
+	display: inline;
+	border-collapse:collapse;
+}
+
+.meeting_information td{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.meeting_detail{
+	margin-top: 10px;
+	padding-left: 70px;
+	line-height: 110%;
+}
+
+
+.meeting_hash_tag{
+	font-size: 8px;
+	margin-top: 10px;
+	line-height: 0%;
+	padding-left: 70px;
+}
+

@@ -7,7 +7,7 @@
 }
 
 .demo-card-wide.mdl-card {
-  width: 512px;
+  width: 700px;
   margin: 40px auto;
 }
 
@@ -46,22 +46,59 @@
   color: #00C7B3;
 }
 
-.social-login{
-  margin: 20px auto;
+.create_meeting_subject{
+	margin-bottom: 0px;
+	margin-left: 50px;
+	
+	
 }
 
-.kakao-login-button{
-  background-color: #FFE552;
-  text-align: center;
-  padding: 15px;
-  margin: 0 30px;
+
+
+.mdl-layout{
+	
 }
 
-.kakao-login-button{
-  font-weight: bold;
+
+.mdl-textfield__input{
+	border:solid;
+	border-color:black;
+	border-width: 1px;
+	height: 40px;
+	width: 360px;
+	margin-left: 30px;
+	margin-bottom: 40px;
+	text-align: center;
 }
 
-.kakao-login-button img{
-  height: 20px;
-  margin-right: 5px;
+
+
+#write_contents{
+	text-align:justify;
+	padding: 100px;
 }
+
+.create_meeting{
+	margin: 0 auto;
+	color: white;
+	background-color: #11BF77;
+	border: thin;
+	font-size: 20px;
+	height: 50px;
+	width: 240px;
+	border-radius: 3%;
+	margin-bottom: 30px;
+}
+
+#mdl-layout subject{
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+

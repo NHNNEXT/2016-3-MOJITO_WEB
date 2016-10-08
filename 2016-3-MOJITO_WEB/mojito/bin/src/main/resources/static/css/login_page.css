@@ -17,21 +17,3 @@
   height: 20px;
   margin-right: 5px;
 }
-
-.password-find-tag{
-  text-align: center;
-}
-
-.password-find-tag p{
-	color: #71D465;
-	font-size: 12px;
-	text-decoration: underline;
-}
-
-.find-password-message{
-	text-align: center;
-}
-
-.find-password-message p{
-	color: #2ECC95;
-}
