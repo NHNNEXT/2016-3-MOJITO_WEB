@@ -1,0 +1,104 @@
+@CHARSET "UTF-8";
+
+
+
+.sign_card_model{
+  display: block;
+}
+
+.demo-card-wide.mdl-card {
+  width: 700px;
+  margin: 40px auto;
+}
+
+.demo-card-wide > .mdl-card__title {
+  display: block;
+  width: 512px;
+  height: 256px;
+  background-image: url('../image/signup_title_image.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #000;
+}
+
+.demo-card-wide > .mdl-card__menu {
+  color: #000;
+}
+
+.signup_email_label{
+  margin-top: 20px;
+}
+
+.mdl-textfield{
+  width: 100%;
+}
+
+.mdl-card--border a{
+  float: right;
+}
+
+.mdl-card--border .cancel-button{
+  color: #6d6f6d;
+}
+
+.mdl-card--border .submit-button{
+  color: #00C7B3;
+}
+
+.create_meeting_subject{
+	margin-bottom: 0px;
+	margin-left: 50px;
+	
+	
+}
+
+
+
+.mdl-layout{
+	
+}
+
+
+.mdl-textfield__input{
+	border:solid;
+	border-color:black;
+	border-width: 1px;
+	height: 40px;
+	width: 360px;
+	margin-left: 30px;
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+
+
+#write_contents{
+	text-align:justify;
+	padding: 100px;
+}
+
+.create_meeting{
+	margin: 0 auto;
+	color: white;
+	background-color: #11BF77;
+	border: thin;
+	font-size: 20px;
+	height: 50px;
+	width: 240px;
+	border-radius: 3%;
+	margin-bottom: 30px;
+}
+
+#mdl-layout subject{
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+

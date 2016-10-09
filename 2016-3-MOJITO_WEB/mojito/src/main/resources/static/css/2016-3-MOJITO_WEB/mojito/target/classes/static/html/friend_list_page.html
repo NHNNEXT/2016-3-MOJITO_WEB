@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>친구 목록</title>
+<!-- Uses a transparent header that draws on top of the layout's background -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+	href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+<link rel="stylesheet" href="../css/header.css">
+<link rel="stylesheet" href="../css/friend_list_page.css">
+
+</head>
+
+<body>
+	<!-- Always shows a header, even in smaller screens. -->
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<header class="mdl-layout__header">
+			<div class="mdl-layout__header-row">
+				<!-- Title -->
+				<span class="mdl-layout-title">Friends List</span>
+				<!-- Add spacer, to align navigation to the right -->
+				<div class="mdl-layout-spacer"></div>
+				<!-- Navigation. We hide it in small screens. -->
+				<nav class="mdl-navigation mdl-layout--large-screen-only">
+					<a class="mdl-navigation__link" href="#">모임</a> <a
+						class="mdl-navigation__link" href="#">친구</a> <a
+						class="mdl-navigation__link" href="#">설정</a>
+				</nav>
+			</div>
+		</header>
+
+		<div class="mdl-layout__drawer">
+			<span class="mdl-layout-title">Mojito</span>
+			<nav class="mdl-navigation">
+				<a class="mdl-navigation__link" href="#">프로필</a> <a
+					class="mdl-navigation__link" href="#">모임</a> <a
+					class="mdl-navigation__link" href="friend_list_page.html">친구</a> <a
+					class="mdl-navigation__link" href="#">설정</a>
+			</nav>
+		</div>
+
+		<main class="mdl-layout__content">
+		<div class="page-content sign_card_model">
+			<!-- Main Card -->
+			<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+				<div class="mdl-card__title"></div>
+				
+				<form action="#">
+					<table class="choice_member_type">
+						<tr>
+							<td><input class="member_type" id="friend" type="submit" value="친구 목록"></td>
+							<td><input class="member_type" id="friends_friend" type="submit" value="지인의 지인"></td>
+						</tr>	
+					</table>
+					
+					
+					<div class="member_list_section">
+						<table class="member_list" id="friend">
+						<tr>
+							<td><img alt="" src="../image/friend_picture.png"> </td>
+							<td class="name">이름</td>
+							<td class="delete">삭제</td>
+						</tr>
+						
+						</table>
+						
+						<table class="member_list" id="friends_friend">
+						
+						</table>
+					</div>
+					
+
+
+					<div class="social-login">
+						<a href="#" style="color: #000; text-decoration: none;">
+							<div class="kakao-login-button">
+								<span><img src="../image/kakao_login_logo.png"></span>카카오톡 친구 부르기
+
+							</div>
+						</a>
+					</div>
+
+
+				</form>
+
+			</div>
+		</div>
+		</main>
+	</div>
+
+	<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+</body>
+</html>
