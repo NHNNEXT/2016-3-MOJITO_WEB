@@ -9,4 +9,7 @@ public class MainPageController {
 	public String mainPage(){
 		return "main_page";
 	}
+	
 }
+
+
