@@ -11,24 +11,33 @@
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
       <div class="mdl-card__title">
       </div>
-
       <form action="#">
         <div class="mdl-card__supporting-text">
-          <div class="signup_label">이메일</div>
+
+          <div class="signup_label">이름</div>
           <div class="mdl-textfield mdl-js-textfield">
-            <label class="mdl-textfield__label" for="userEmail">E-mail</label>
-            <input class="mdl-textfield__input" type="email" id="userEmail" name="userEmail">
+            <label class="mdl-textfield__label" for="userName">Name</label>
+            <input class="mdl-textfield__input" type="text" id="userName" name="userName">
           </div>
           <div class="signup_label">비밀번호</div>
           <div class="mdl-textfield mdl-js-textfield">
             <label class="mdl-textfield__label" for="userPassword">Password</label>
             <input class="mdl-textfield__input" type="password" id="userPassword" name="userPassword">
           </div>
-          <div class="signup_label">이름</div>
+          <div class="signup_label">비밀번호확인</div>
           <div class="mdl-textfield mdl-js-textfield">
-            <label class="mdl-textfield__label" for="userName">Name</label>
-            <input class="mdl-textfield__input" type="text" id="userName" name="userName">
+            <label class="mdl-textfield__label" for="userPassword2">Password Confirm</label>
+            <input class="mdl-textfield__input" type="password" id="userPassword2" name="userPassword">
           </div>
+
+        </div>
+
+        <div class="social-login">
+          <a href="#" style="color: #000; text-decoration: none;">
+            <div class="kakao-login-button">
+              <span><img src="../image/kakao_login_logo.png"></span>카카오 계정 연동하기
+            </div>
+          </a>
         </div>
 
         <div class="mdl-card__actions mdl-card--border">

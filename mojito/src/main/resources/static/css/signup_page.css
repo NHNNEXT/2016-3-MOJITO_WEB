@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-.sign_card_model{
+.sign_card_model {
   display: block;
 }
 
@@ -12,7 +12,7 @@
 .demo-card-wide > .mdl-card__title {
   display: block;
   width: 512px;
-  height: 256px;
+  height: 244px;
   background-image: url('../image/signup_title_image.png');
   background-size: contain;
   background-position: center;
@@ -24,22 +24,22 @@
   color: #000;
 }
 
-.signup_email_label{
+.signup_email_label {
   margin-top: 20px;
 }
 
-.mdl-textfield{
+.mdl-textfield {
   width: 100%;
 }
 
-.mdl-card--border a{
+.mdl-card--border a {
   float: right;
 }
 
-.mdl-card--border .cancel-button{
+.mdl-card--border .cancel-button {
   color: #6d6f6d;
 }
 
-.mdl-card--border .submit-button{
+.mdl-card--border .submit-button {
   color: #00C7B3;
 }
