@@ -1,90 +1,86 @@
 @CHARSET "UTF-8";
 
 body {
-	font-family: "Helvetica", "Arial", sans-serif;
-}
-
-.meeting p {
-	
+  font-family: "Helvetica", "Arial", sans-serif;
 }
 
 #meeting_list {
-	width: 1200px;
-	padding: 0 200px;
-	margin: 0px auto;
+  width: 1200px;
+  padding: 0 200px;
+  margin: 0px auto;
 }
 
-.meeting { 
-	margin-right: 300px;
-	margin-top: 40px;
+.meeting {
+  margin-right: 300px;
+  margin-top: 40px;
 }
 
 .meeting_thumbnail {
-	width: 160px;
-	height: 112px;
-	display: inline-block;
-	float: left;
-	display: inline;
-	vertical-align: middle;
-	background-image:
-		url("https://images-na.ssl-images-amazon.com/images/I/41I8Tc2YzrL._SX300_.jpg");
-	background-size: 100%;
+  width: 160px;
+  height: 112px;
+  display: inline-block;
+  float: left;
+  display: inline;
+  vertical-align: middle;
+  background-image: url("https://images-na.ssl-images-amazon.com/images/I/41I8Tc2YzrL._SX300_.jpg");
+  background-size: 100%;
 }
 
 .meeting_thumbnail_img {
-	display: block;
-	margin: auto;
-	padding: 30px 30px;
-	width: 60px;
-	height: 60px;
-	border-radius: 100px;
-	text-align: center;
-	overflow: hidden;
+  display: block;
+  margin: auto;
+  padding: 30px 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  text-align: center;
+  overflow: hidden;
 }
 
 .destroy_time {
-	margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 .time {
-	margin-left: 60px;
-	display: inline;
+  margin-left: 60px;
+  display: inline;
 }
 
 .event_place {
-	margin-left: 30px;
-	display: inline;
+  margin-left: 30px;
+  display: inline;
 }
 
 .participants {
-	margin-left: 30px;
-	display: inline;
+  margin-left: 30px;
+  display: inline;
 }
 
 .basic_info {
-	margin-left: 230px;
-	margin-right: 40px;
-	background: #F7F8F9;
+  margin-left: 230px;
+  margin-right: 40px;
+  background: #F7F8F9;
 }
 
 .main_text {
-	width: 330px;
-	padding-left: 200px;
-	padding-top: 20px;
-	text-align: center;
+  width: 330px;
+  padding-left: 200px;
+  padding-top: 20px;
+  text-align: center;
 }
 
 .detail_button {
-	margin-left: 550px;
-	border: 2px solid rgb(255, 64, 129);
-	padding: 5px;
-	border-radius: 30px;
+  margin-left: 550px;
+  border: 2px solid rgb(255, 64, 129);
+  padding: 5px;
+  border-radius: 30px;
 }
 
 .join_button {
-	margin-left: 10px;
-	border: 2px solid rgb(255, 64, 129);
-	padding: 5px 15px;
-	border-radius: 30px;
+  margin-left: 10px;
+  border: 2px solid rgb(255, 64, 129);
+  padding: 5px 15px;
+  border-radius: 30px;
 }
+
 }
