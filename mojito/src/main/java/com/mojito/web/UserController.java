@@ -19,14 +19,4 @@ public class UserController {
 	public String findPassword(){
 		return "find_password_page";
 	}
-	
-	@GetMapping("/new_meeting")
-	public String newMeeting() {
-		return "create_article_page";
-	}
-	
-	@GetMapping("/list")
-	public String userList() {
-		return "friend_list_page";
-	}
 }
