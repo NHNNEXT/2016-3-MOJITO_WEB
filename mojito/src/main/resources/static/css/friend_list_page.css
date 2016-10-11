@@ -1,8 +1,6 @@
 @CHARSET "UTF-8";
 
-
-
-.sign_card_model{
+.sign_card_model {
   display: block;
 }
 
@@ -26,80 +24,78 @@
   color: #000;
 }
 
-.signup_email_label{
+.signup_email_label {
   margin-top: 20px;
 }
 
-.mdl-textfield{
+.mdl-textfield {
   width: 100%;
 }
 
-.mdl-card--border a{
+.mdl-card--border a {
   float: right;
 }
 
-.mdl-card--border .cancel-button{
+.mdl-card--border .cancel-button {
   color: #6d6f6d;
 }
 
-.mdl-card--border .submit-button{
+.mdl-card--border .submit-button {
   color: #00C7B3;
 }
 
-.social-login{
+.social-login {
   margin: 20px auto;
 }
 
-.kakao-login-button{
+.kakao-login-button {
   background-color: #FFE552;
   text-align: center;
   padding: 15px;
   margin: 0 30px;
 }
 
-.kakao-login-button{
+.kakao-login-button {
   font-weight: bold;
 }
 
-.kakao-login-button img{
+.kakao-login-button img {
   height: 20px;
   margin-right: 5px;
 }
 
-.choice_member_type{
-	border-collapse:collapse;
-	padding: 0px;
-	margin: 0px;
-	text-align: center;
-	width: 500px;
-	
+.choice_member_type {
+  border-collapse: collapse;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  width: 500px;
+
 }
 
-
-.member_type{
-	margin: 0px;
-	border: solid;
-	border-width: 1px;
-	width: 250px;
-	height: 40px;
-	font-size: 20px;
-	background-color: white;	
+.member_type {
+  margin: 0px;
+  border: solid;
+  border-width: 1px;
+  width: 250px;
+  height: 40px;
+  font-size: 20px;
+  background-color: white;
 }
 
-
-.delete{
-	padding: 5px;
-	border-radius: 15%;
+.delete {
+  padding: 5px;
+  border-radius: 15%;
 }
 
-.name{
-	padding-left: 10px;
-	width: 390px;
+.name {
+  padding-left: 10px;
+  width: 390px;
 }
 
-.delete{
-	color: white;
-	background-color: red;	
-	text-align: left;
+.delete {
+  color: white;
+  background-color: red;
+  text-align: left;
 }
 
