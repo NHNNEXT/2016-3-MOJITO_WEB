@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{> /include/head}}
+</head>
+
+<body>
+	{{> /include/header}}
+		<main class="mdl-layout__content">
+		<div class="page-content view_detail_model">
+			<!-- Main Card -->
+			<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+
+				<div class="mdl-layout">
+					<p id="show_my_meeting">내 모임 보기</p>
+					<div class="meeting_category">
+						<img class="friend_picture" alt="" src="../image/friend_picture.png">
+						<table class="meeting_information">
+							<tr>
+								<td>2016/9/10 14:00</td>
+								<td>홍대 스타벅스</td>
+							</tr>
+							<tr>
+								<td>4/5</td>
+							</tr>
+						</table>
+						<p class="meeting_detail">홍대 카페에서 공부할거예요!<br>같이 할 사람?</p>
+						<p class="meeting_hash_tag">#개발개발 #코딩 #카페 #같이해요</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		</main>
+	</div>
+	{{> /include/footer}}
+	<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+</body>
+</html>

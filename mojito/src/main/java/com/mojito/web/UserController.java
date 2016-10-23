@@ -24,4 +24,9 @@ public class UserController {
     public String updateUserInfo() {
         return "update_userinfo_page";
     }
+    
+    @GetMapping("/friends")
+    public String friendsList(){
+    	return "friend_list_page";
+    }
 }
