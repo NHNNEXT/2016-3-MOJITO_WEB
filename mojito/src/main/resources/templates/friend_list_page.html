@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{{> /include/head}}
+</head>
+
+<body>
+	{{> /include/header}}
+
+	<main class="mdl-layout__content">
+	<div class="page-content sign_card_model">
+		<!-- Main Card -->
+		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+			<div class="mdl-card__title"></div>
+
+			<form action="#">
+				<table class="choice_member_type">
+					<tr>
+						<td><input class="member_type" id="friend" type="submit"
+							value="친구 목록"></td>
+						<td><input class="member_type" id="friends_friend"
+							type="submit" value="지인의 지인"></td>
+					</tr>
+				</table>
+
+
+				<div class="member_list_section">
+					<table class="member_list" id="friend">
+						<tr>
+							<td><img alt="" src="../image/friend_picture.png"></td>
+							<td class="name">이름</td>
+							<td class="delete">삭제</td>
+						</tr>
+
+					</table>
+
+					<table class="member_list" id="friends_friend">
+
+					</table>
+				</div>
+
+
+
+				<div class="social-login">
+					<a href="#" style="color: #000; text-decoration: none;">
+						<div class="kakao-login-button">
+							<span><img src="../image/kakao_login_logo.png"></span>카카오톡
+							친구 부르기
+
+						</div>
+					</a>
+				</div>
+
+
+			</form>
+
+		</div>
+	</div>
+	</main>
+	</div>
+
+	{{> /include/footer}}
+	<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+</body>
+</html>
