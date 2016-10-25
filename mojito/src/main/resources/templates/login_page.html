@@ -13,7 +13,7 @@
       <div class="demo-card-wide mdl-card mdl-shadow--2dp">
         <div class="mdl-card__title">
         </div>
-        <form action="#">
+        <form id="loginForm" method="post" action="/login">
 
           <div class="mdl-card__supporting-text">
             <div class="signup_email_label">이메일</div>
@@ -38,7 +38,7 @@
             </a>
           </div>
           <div class="mdl-card__actions mdl-card--border">
-            <a href="./" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect submit-button">
+            <a href="#" onclick="document.getElementById('loginForm').submit()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect submit-button">
               로그인
             </a>
             <a href="./" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect cancel-button">

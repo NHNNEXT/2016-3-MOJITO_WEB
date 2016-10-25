@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MeetingController {
 	
 	@GetMapping("/create")
-		public String create(){
+	public String create(){
 		return "create_article_page";
 	}
 	
 	@GetMapping("/my")
-		public String my(){
+	public String my(){
 		return "my_meeting_page";
 	}
 }
