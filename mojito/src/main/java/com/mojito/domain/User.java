@@ -16,6 +16,7 @@ public class User {
 	
 	@Column(nullable = false)
 	private String userPassword;
+	private String name;
 
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
@@ -25,9 +26,13 @@ public class User {
 		this.userPassword = userPassword;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword + "]";
+		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", name=" + name + "]";
 	}
 
 	public boolean matchPassword(String newPassword) {

@@ -32,3 +32,8 @@ a:visited {
   text-decoration: none;
   color: #FFF;
 }
+
+.mdl-menu a:visited {
+  text-decoration: none;
+  color: #BBB;
+}
