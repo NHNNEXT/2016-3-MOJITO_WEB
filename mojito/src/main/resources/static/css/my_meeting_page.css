@@ -1,97 +1,44 @@
 @CHARSET "UTF-8";
-
-
-
-.sign_card_model{
+#show_my_meeting {
+  margin: 20px;
   display: block;
 }
 
-.demo-card-wide.mdl-card {
-  width: 700px;
-  margin: 40px auto;
+.meeting_category {
+  margin: 20px;
 }
 
-.demo-card-wide > .mdl-card__title {
-  display: block;
-  width: 512px;
-  height: 256px;
-  background-image: url('../image/signup_title_image.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: #000;
+.create_meeting_subject {
+  margin-bottom: 0px;
+  margin-left: 50px;
 }
 
-.demo-card-wide > .mdl-card__menu {
-  color: #000;
+.friend_picture {
+  display: inline;
 }
 
-.signup_email_label{
-  margin-top: 20px;
+.meeting_information {
+  padding-bottom: 25px;
+  padding-top: 15px;
+  background-color: #EEE;
+  display: inline;
+  border-collapse: collapse;
 }
 
-.mdl-textfield{
-  width: 100%;
+.meeting_information td {
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
-.mdl-card--border a{
-  float: right;
+.meeting_detail {
+  margin-top: 10px;
+  padding-left: 70px;
+  line-height: 110%;
 }
 
-.mdl-card--border .cancel-button{
-  color: #6d6f6d;
+.meeting_hash_tag {
+  font-size: 8px;
+  margin-top: 10px;
+  line-height: 0%;
+  padding-left: 70px;
 }
-
-.mdl-card--border .submit-button{
-  color: #00C7B3;
-}
-
-
-
-
-#show_my_meeting{
-	margin: 20px;
-	display:block;
-}
-
-.meeting_category{
-	margin: 20px;
-}
-
-
-.create_meeting_subject{
-	margin-bottom: 0px;
-	margin-left: 50px;
-}
-
-.friend_picture{
-	display: inline;
-}
-
-.meeting_information{
-	padding-bottom: 25px;
-	padding-top:15px;
-	background-color: #EEE;
-	display: inline;
-	border-collapse:collapse;
-}
-
-.meeting_information td{
-	padding-left: 30px;
-	padding-right: 30px;
-}
-
-.meeting_detail{
-	margin-top: 10px;
-	padding-left: 70px;
-	line-height: 110%;
-}
-
-
-.meeting_hash_tag{
-	font-size: 8px;
-	margin-top: 10px;
-	line-height: 0%;
-	padding-left: 70px;
-}
-

@@ -4,21 +4,43 @@ body {
   font-family: "Helvetica", "Arial", sans-serif;
 }
 
+li {
+  list-style: none;
+}
+
+main {
+  height: 105%;
+}
+
+a:hover{
+  color: #000;
+}
+
+.main_page_label {
+  width: 880px;
+  margin: 3em auto 3em auto;
+}
+
+.main_page_label p{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  color: #000;
+}
+
 #meeting_list {
-  width: 1200px;
-  padding: 0 200px;
+  width: 930px;
   margin: 0px auto;
 }
 
 .meeting {
-  margin-right: 300px;
-  margin-top: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 20px 24px;
 }
 
 .meeting_thumbnail {
   width: 160px;
   height: 112px;
-  display: inline-block;
   float: left;
   display: inline;
   vertical-align: middle;
@@ -71,16 +93,16 @@ body {
 
 .detail_button {
   margin-left: 550px;
-  border: 2px solid rgb(255, 64, 129);
+  border: 2px solid #43D080;
   padding: 5px;
-  border-radius: 30px;
+  border-radius: 5px;
+  color: #000;
 }
 
 .join_button {
   margin-left: 10px;
-  border: 2px solid rgb(255, 64, 129);
+  border: 2px solid #43D080;
   padding: 5px 15px;
-  border-radius: 30px;
-}
-
+  border-radius: 5px;
+  color: #000;
 }
