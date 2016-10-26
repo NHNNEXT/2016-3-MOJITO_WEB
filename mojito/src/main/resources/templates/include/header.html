@@ -7,9 +7,16 @@
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <a class="mdl-navigation__link" href="/meeting/create">사용자</a>
+      {{^sessionedUser}}
+        <a class="mdl-navigation__link" href="/">로그인</a>
+      {{/sessionedUser}}
+      {{#sessionedUser}}
+        <a class="mdl-navigation__link" href="/meeting/create">새 모임</a>
         <a class="mdl-navigation__link" href="/meeting/my">모임</a>
         <a class="mdl-navigation__link" href="/friends">친구</a>
+        <a class="mdl-navigation__link" href="/update">개인 정보 수정</a>        
+        <a class="mdl-navigation__link" href="/logout">로그아웃</a>
+      {{/sessionedUser}}
       </nav>
     </div>
   </header>

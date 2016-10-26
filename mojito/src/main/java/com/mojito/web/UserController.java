@@ -41,6 +41,13 @@ public class UserController {
     	return "redirect:/main_page";
     }
     
+    @GetMapping("/logout")
+    public String userLogout(HttpSession session) {
+    	session.removeAttribute(HttpSessionUtils.USER_SESSION_KEY);
+    	
+    	return "redirect:/";
+    }
+    
     @GetMapping("/user")
     public String signup() {
         return "signup_page";
@@ -51,7 +58,7 @@ public class UserController {
         return "find_password_page";
     }
 
-    @GetMapping("/update")
+    @GetMapping("/update") 
     public String updateUserInfo() {
         return "update_userinfo_page";
     }
