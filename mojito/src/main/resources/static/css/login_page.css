@@ -1,16 +1,17 @@
+/* signup_page.css 내용 포함*/
 .social-login {
   margin: 20px auto;
 }
 
 .kakao-login-button {
-  background-color: #FFE552;
+  background-color: #2E6093;
   text-align: center;
   padding: 15px;
   margin: 0 30px;
 }
 
 .kakao-login-button {
-  font-weight: bold;
+  color: #fff;
 }
 
 .kakao-login-button img {
