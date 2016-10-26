@@ -2,65 +2,57 @@
 <html lang="en">
 <head>
 	{{> /include/head}}
+	<link rel="stylesheet" href="../css/friend_list_page.css">
 </head>
-
 <body>
-	{{> /include/header}}
+{{> /include/header}}
+<main class="main__content">
+	<div class="friend-searchbar main-center-align">
+		<label for="searchValue"></label>
+		<input type="text" placeholder="친구를 검색 하세요!" id="searchValue" name="searchValue" autofocus/>
+		<button>검 색</button>
+	</div>
+	<div class="friend-list-box">
+		<div class="friend-classify-list">
+			<a class="friend-classify" href="/html/friend_list.html"><span style="border-right: 1px solid #C4C4C4 ;">내 친구 목록</span></a>
+			<a class="friend-classify" href="/"><span>모임에서 만난 사람</span></a>
+		</div>
 
-	<main class="mdl-layout__content">
-	<div class="page-content sign_card_model">
-		<!-- Main Card -->
-		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-			<div class="mdl-card__title"></div>
-
-			<form action="#">
-				<table class="choice_member_type">
-					<tr>
-						<td><input class="member_type" id="friend" type="submit"
-							value="친구 목록"></td>
-						<td><input class="member_type" id="friends_friend">
-							type="submit" value="지인의 지인"></td>
-					</tr>
-				</table>
-
-
-				<div class="member_list_section">
-					<table class="member_list" id="friend">
-						<tr>
-							<td><img alt="" src="../image/friend_picture.png"></td>
-							<td class="name">이름</td>
-							<td class="delete">삭제</td>
-						</tr>
-
-					</table>
-
-					<table class="member_list" id="friends_friend">
-
-					</table>
+		<div class="friend-list">
+			<div class="friend-list-one">
+				<img src="/image/sample.jpg" alt="">
+				<p>한재엽</p>
+				<span>ljyhanl@gmail.com</span>
+				<div class="friend-add-button">
+					추가
 				</div>
+			</div>
+		</div>
 
-
-
-				<div class="social-login">
-					<a href="#" style="color: #000; text-decoration: none;">
-						<div class="kakao-login-button">
-							<span><img src="../image/kakao_login_logo.png"></span>카카오톡
-							친구 부르기
-
-						</div>
-					</a>
+		<div class="friend-list">
+			<div class="friend-list-one">
+				<img src="/image/sample.jpg" alt="">
+				<p>한재엽</p>
+				<span>ljyhanl@gmail.com</span>
+				<div class="friend-add-button">
+					추가
 				</div>
-
-
-			</form>
-
+			</div>
+		</div>
+		<div class="friend-list">
+			<div class="friend-list-one">
+				<img src="/image/sample.jpg" alt="">
+				<p>한재엽</p>
+				<span>ljyhanl@gmail.com</span>
+				<div class="friend-add-button">
+					추가
+				</div>
+			</div>
 		</div>
 	</div>
-	</main>
-	</div>
+</main>
 
-	{{> /include/footer}}
-	<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
-	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 </body>
 </html>
