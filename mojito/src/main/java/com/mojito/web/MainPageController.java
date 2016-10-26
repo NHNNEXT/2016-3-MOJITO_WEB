@@ -9,7 +9,6 @@ public class MainPageController {
 	public String mainPage(){
 		return "login_page";
 	}
-	
 }
 
 
