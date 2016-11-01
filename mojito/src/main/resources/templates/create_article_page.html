@@ -12,6 +12,7 @@
 	<main class="mdl-layout__content">
 	<div class="page-content view_detail_model">
 		<!-- Main Card -->
+<<<<<<< HEAD
 		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
 			<div class="container" id="main">
 				<form name="create_meeting" method="post" action="/meeting/create">
@@ -33,28 +34,48 @@
 							placeholder="모임 장소"> <input type="submit" value="검색" />
 						<input type="checkbox" id="placeNone" name="noUseMap"> <label
 							for="placeNone" class="place_none">장소 없음 / 미정</label><br></br>
+=======
+		<div class="container" id="main">
+			<form name="/create_meeting" method="post" action="/meeting/create_article">
+				<div class="form-group">
+					<label for="date">날짜 선택</label> <input class="form-control" type="date" id="date" name="date" placeholder="모임 날짜">
+				</div>
+				
+				<div class="form-group">
+					<label for="time">시간 선택</label> <input class="form-control" type="time" id="time" name="time" placeholder="모임 시간">
+				</div>
+				
+				<div class="form-group">
+					<label for="bomb_time">폭파시간 선택</label> <input class="form-control" type="time" id="bomb_time" name="bomb_time" placeholder="폭파 시간">
+				</div>
+				
+				<div class="form-group">
+					<label for="location">장소 선택</label> <input type="text" class="form-control" id="location" name="location"
+						placeholder="모임 장소"> <input type="submit" value="검색" /> 
+						<input type="checkbox" id="placeNone" name="noUseMap"> 
+						<label for="placeNone" class="place_none">장소 없음 / 미정</label><br></br> 
+>>>>>>> 6bc94b7781212487170f3b579835f4b81c3d2275
 						<iframe width="600" height="450" frameborder="0" style="border: 0"
-							src="https://www.google.com/maps/embed/v1/search?q=Seoul&key=AIzaSyC7FOJMYs0GvlYdn97cqrRQnqS8LynVzJs"
-							allowfullscreen></iframe>
-					</div>
+								src="https://www.google.com/maps/embed/v1/search?q=Seoul&key=AIzaSyC7FOJMYs0GvlYdn97cqrRQnqS8LynVzJs"
+								allowfullscreen>
+						</iframe>
+				</div>
 
-					<div class="form-group">
-						<label for="capacity">모임 정원</label> <input type="range" min="1"
-							max="30" class="form-control" id="capacity" name="capacity">
-					</div>
-					<div class="form-group">
-						<label for="contents">내용</label> <input type="text"
-							class="form-control" id="contents" name="contents"
-							placeholder="모임 내용">
-					</div>
-					<div class="buttonArea">
-						<button type="button" class="normalBtn previewBtn">미리보기</button>
-						<button type="button" class="normalBtn draftBtn">임시저장</button>
-						<input type="submit" class="create_meeting" value="개설완료" />
-					</div>
+				<div class="form-group">
+					<label for="capacity">모임 정원</label> <input type="range" min="1" max="30" class="form-control" id="capacity" name="capacity">
+				</div>
+				<div class="form-group">
+					<label for="contents">내용</label>
+					<textarea name="contents" id="contents" rows="5" class="form-control" placeholder="모임 내용">
+						</textarea>
+				</div>
+				<div class="buttonArea">
+					<button type="button" class="normalBtn previewBtn">미리보기</button>
+					<button type="button" class="normalBtn draftBtn">임시저장</button>
+					<input type="submit" class="create_meeting" value="개설완료" />
+				</div>
 
-				</form>
-			</div>
+			</form>
 		</div>
 	</div>
 
