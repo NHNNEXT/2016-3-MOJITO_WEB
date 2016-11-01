@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.mojito.domain.User;
@@ -24,21 +25,21 @@ public class UserController {
     @PostMapping("/login")
     public String userLogin(String userEmail, String userPassword, HttpSession session) {
     	User user = userRepository.findByUserEmail(userEmail);
-    	if (user==null) {
-    		System.out.println("Login Fail!");
-    		return "redirect:/login";
+    	if (user==null) { // 해당 email 계정이 존재하지 않는 경우
+    		System.out.println("Email Not Existing!");
+    		return "/login_page";
     	}
     	
-    	if (!user.matchPassword(userPassword)){
-    		System.out.println("Login Fail!");
-    		return "redirect:/login";
+    	if (!user.matchPassword(userPassword)){ // 비밀번호가 잘못된 경우
+    		System.out.println("Invalid Password!");
+    		return "/login_page";
     	}
     	
     	System.out.println("Login Success!");
     	session.setAttribute(HttpSessionUtils.USER_SESSION_KEY, user);
     	
     	System.out.println("userEmail : " + userEmail + "\n" + "userPassword : " + userPassword);
-    	return "redirect:/main_page";
+    	return "redirect:/";
     }
     
     @GetMapping("/logout")
@@ -57,11 +58,6 @@ public class UserController {
     public String findPassword() {
         return "find_password_page";
     }
-
-    @GetMapping("/update") 
-    public String updateUserInfo() {
-        return "update_userinfo_page";
-    }
     
     @GetMapping("/friends")
     public String friendsList(){
@@ -73,8 +69,62 @@ public class UserController {
     	return "/main_page";
     }
     
-    @GetMapping("/updateForm")
-    public String updateForm() {
+    @GetMapping("/{id}/updateForm")
+    public String updateForm(@PathVariable Long id, HttpSession session) {
+    	if (!HttpSessionUtils.isLoginUser(session)) {
+    		return "redirect:/login";
+    	}
+    	User user = userRepository.findOne(id);
+    	
+    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
+    	if (!sessionedUser.matchId(id)) {
+    		throw new IllegalStateException("You can't change other user's information.");
+    	}
+    	
     	return "/update_userinfo_page";
     }
+    
+    @PostMapping("/{id}/update")
+    public String update(@PathVariable Long id, User updatedUser, String userPasswordConfirm, HttpSession session) {
+    	if (!HttpSessionUtils.isLoginUser(session)) {
+    		return "redirect:/login";
+    	}
+    	
+    	User dbUser = userRepository.findOne(id);
+    	
+    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
+    	if (!sessionedUser.matchId(id)) {
+    		throw new IllegalStateException("You can't change other user's information.");
+    	}
+    	
+    	System.out.println("user : " + updatedUser);
+    	dbUser.update(updatedUser, userPasswordConfirm);
+    	userRepository.save(dbUser);
+    	
+    	return "redirect:/logout";
+    	
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

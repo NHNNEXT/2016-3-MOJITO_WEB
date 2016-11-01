@@ -18,6 +18,7 @@ public class User {
 	private String userPassword;
 	private String name;
 
+
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
@@ -41,6 +42,20 @@ public class User {
 		}
 		
 		return newPassword.equals(userPassword);
+	}
+
+	public boolean matchId(Long newId) {
+		if (newId == null) {
+			return false;
+		}
+		return newId.equals(id);
+	}
+
+	public void update(User updatedUser, String userPasswordConfirm) {
+		this.name = updatedUser.name;
+		if (updatedUser.matchPassword(userPasswordConfirm)) {
+			this.userPassword = updatedUser.userPassword;
+		}
 	}
 
 	
