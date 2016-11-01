@@ -21,6 +21,7 @@ public class UserController {
     public String login() {
         return "login_page";
     }
+    
 
     @PostMapping("/login")
     public String userLogin(String userEmail, String userPassword, HttpSession session) {
@@ -41,7 +42,25 @@ public class UserController {
     	System.out.println("userEmail : " + userEmail + "\n" + "userPassword : " + userPassword);
     	return "redirect:/";
     }
+
+    @GetMapping("/signup")
+    public String signupForm() {
+    	return "signup_page";
+    }
     
+    @PostMapping("/signup")
+    public String signup(User newUser) {
+    	System.out.println("newUser : " + newUser);
+    	
+    	if(userRepository.findByUserEmail(newUser.getUserEmail()) == null) {
+    		userRepository.save(newUser);
+    		return "redirect:/";
+    	} else {
+    		System.out.println("이미 존재하는 email입니다.");
+    	}
+    	
+    	return "/signup_page";
+    }
     @GetMapping("/logout")
     public String userLogout(HttpSession session) {
     	session.removeAttribute(HttpSessionUtils.USER_SESSION_KEY);
@@ -78,7 +97,8 @@ public class UserController {
     	
     	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
     	if (!sessionedUser.matchId(id)) {
-    		throw new IllegalStateException("You can't change other user's information.");
+    		System.out.println("You can't change other user's information.");
+    		return "redirect:/logout";
     	}
     	
     	return "/update_userinfo_page";
@@ -86,17 +106,20 @@ public class UserController {
     
     @PostMapping("/{id}/update")
     public String update(@PathVariable Long id, User updatedUser, String userPasswordConfirm, HttpSession session) {
+    	System.out.println("여기 들어오긴 하나?");
     	if (!HttpSessionUtils.isLoginUser(session)) {
     		return "redirect:/login";
-    	}
-    	
-    	User dbUser = userRepository.findOne(id);
+    	}    	
     	
     	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
     	if (!sessionedUser.matchId(id)) {
     		throw new IllegalStateException("You can't change other user's information.");
     	}
     	
+    	System.out.println("edit user : " + updatedUser);
+    	System.out.println("new password confirm : " + userPasswordConfirm);
+    	
+    	User dbUser = userRepository.findOne(id);
     	System.out.println("user : " + updatedUser);
     	dbUser.update(updatedUser, userPasswordConfirm);
     	userRepository.save(dbUser);

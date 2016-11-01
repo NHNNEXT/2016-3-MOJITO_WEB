@@ -18,6 +18,9 @@ public class User {
 	private String userPassword;
 	private String name;
 
+	public String getUserEmail() {
+		return userEmail;
+	}
 
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;

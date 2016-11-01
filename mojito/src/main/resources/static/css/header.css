@@ -28,12 +28,9 @@ a:link {
   color: #FFF;
 }
 
-a:visited {
-  text-decoration: none;
-  color: #FFF;
-}
-
-.mdl-menu a:visited {
+.dropdown_menu_link {
   text-decoration: none;
   color: #BBB;
-}
+} 
+
+

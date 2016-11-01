@@ -12,31 +12,10 @@
 	<main class="mdl-layout__content">
 	<div class="page-content view_detail_model">
 		<!-- Main Card -->
-<<<<<<< HEAD
-		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-			<div class="container" id="main">
-				<form name="create_meeting" method="post" action="/meeting/create">
-					<div class="form-group">
-						<label for="date">날짜 선택</label> <input class="form-control"
-							type="date" id="date" name="date" placeholder="모임 날짜">
-					</div>
-					<div class="form-group">
-						<label for="time">시간 선택</label> <input class="form-control"
-							type="time" id="time" name="time" placeholder="모임 시간">
-					</div>
-					<div class="form-group">
-						<label for="bomb_time">폭파시간 선택</label> <input class="form-control"
-							type="time" id="bomb_time" name="bomb_time" placeholder="폭파 시간">
-					</div>
-					<div class="form-group">
-						<label for="location">장소 선택</label> <input type="text"
-							class="form-control" id="location" name="location"
-							placeholder="모임 장소"> <input type="submit" value="검색" />
-						<input type="checkbox" id="placeNone" name="noUseMap"> <label
-							for="placeNone" class="place_none">장소 없음 / 미정</label><br></br>
-=======
 		<div class="container" id="main">
-			<form name="/create_meeting" method="post" action="/meeting/create_article">
+			{{#sessionedUser}}
+			<form name="/create_meeting" method="post" action="/meeting/{{id}}/create_article">
+			{{/sessionedUser}}
 				<div class="form-group">
 					<label for="date">날짜 선택</label> <input class="form-control" type="date" id="date" name="date" placeholder="모임 날짜">
 				</div>
@@ -54,7 +33,6 @@
 						placeholder="모임 장소"> <input type="submit" value="검색" /> 
 						<input type="checkbox" id="placeNone" name="noUseMap"> 
 						<label for="placeNone" class="place_none">장소 없음 / 미정</label><br></br> 
->>>>>>> 6bc94b7781212487170f3b579835f4b81c3d2275
 						<iframe width="600" height="450" frameborder="0" style="border: 0"
 								src="https://www.google.com/maps/embed/v1/search?q=Seoul&key=AIzaSyC7FOJMYs0GvlYdn97cqrRQnqS8LynVzJs"
 								allowfullscreen>

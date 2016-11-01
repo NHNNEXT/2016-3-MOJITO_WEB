@@ -9,6 +9,7 @@
       <nav class="mdl-navigation mdl-layout--large-screen-only">
       {{^sessionedUser}}
         <a class="mdl-navigation__link" href="/">로그인</a>
+        <a class="mdl-navigation__link" href="/signup">회원가입</a>
       {{/sessionedUser}}
       {{#sessionedUser}}
         <a class="mdl-navigation__link" href="/meeting/create"><i class="material-icons">mode_edit</i> 새 모임</a>
@@ -17,10 +18,10 @@
       		<i class="material-icons">more_vert</i>
       	</button>
       	<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu-lower-right">
-          <li class="mdl-menu__item"><a href="/meeting/my">내 모임</a></li>
-      	  <li class="mdl-menu__item"><a href="/friends">내 친구</a></li>
-      	  <li class="mdl-menu__item"><a href="/{{id}}/updateForm">개인 정보 수정</a></li>
-     	  <li class="mdl-menu__item"><a href="/logout">로그아웃</a></li>
+          <li class="mdl-menu__item"><a class="dropdown_menu_link" href="/meeting/my">내 모임</a></li>
+      	  <li class="mdl-menu__item"><a class="dropdown_menu_link" href="/friends">내 친구</a></li>
+      	  <li class="mdl-menu__item"><a class="dropdown_menu_link" href="/{{id}}/updateForm">개인 정보 수정</a></li>
+     	  <li class="mdl-menu__item"><a class="dropdown_menu_link" href="/logout">로그아웃</a></li>
     	</ul>
       {{/sessionedUser}}
       </nav>
