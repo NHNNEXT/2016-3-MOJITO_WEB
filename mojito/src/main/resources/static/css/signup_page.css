@@ -1,12 +1,16 @@
 @CHARSET "UTF-8";
+.mdl-layout__content{
+  display: block;
+}
 
 .sign_card_model {
   display: block;
 }
 
-.demo-card-wide.mdl-card {
+.demo-card-wide {
+  display: block;
   width: 512px;
-  margin: 40px auto;
+  margin: 80px auto;
 }
 
 .demo-card-wide > .mdl-card__title {
