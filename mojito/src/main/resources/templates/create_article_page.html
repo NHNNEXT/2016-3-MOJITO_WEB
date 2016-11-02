@@ -13,7 +13,9 @@
 	<div class="page-content view_detail_model">
 		<!-- Main Card -->
 		<div class="container" id="main">
-			<form name="/create_meeting" method="post" action="/meeting/create_article">
+			{{#sessionedUser}}
+			<form name="/create_meeting" method="post" action="/meeting/{{id}}/create_article">
+			{{/sessionedUser}}
 				<div class="form-group">
 					<label for="date">날짜 선택</label> <input class="form-control" type="date" id="date" name="date" placeholder="모임 날짜">
 				</div>

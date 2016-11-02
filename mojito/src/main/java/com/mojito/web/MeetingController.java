@@ -1,18 +1,19 @@
 package com.mojito.web;
 
+import java.time.LocalDateTime;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mojito.domain.Meeting;
 import com.mojito.domain.MeetingRepository;
 import com.mojito.domain.User;
-
-import com.mojito.web.HttpSessionUtils;
 
 @Controller
 @RequestMapping("/meeting")
@@ -22,7 +23,10 @@ public class MeetingController {
 	private MeetingRepository meetingRepository;
 	
 	@GetMapping("/create")
-	public String create(){
+	public String create(HttpSession session) {
+		if (!HttpSessionUtils.isLoginUser(session)) {
+			return "/login_page";
+		}
 		return "create_article_page";
 	}
 	
@@ -36,12 +40,15 @@ public class MeetingController {
 		return "my_meeting_page";
 	}
 	
-	@PostMapping("/create_article")
-	public String createArticle(Meeting meeting){
-		//User sessionUser = HttpSessionUtils.getUserFromSession(session);
+	@PostMapping("/{id}/create_article")
+	public String createArticle(@PathVariable Long id, Meeting meeting, HttpSession session){
+		User sessionUser = HttpSessionUtils.getUserFromSession(session);
+		meeting.setWriter(sessionUser);
+		meeting.setCapacity(5);
+		meeting.setCreateDate(LocalDateTime.now());
 		System.out.println("meeting: "+meeting);
 		meetingRepository.save(meeting);
-		return "redirect:/my_meeting_page";
+		return "redirect:/meeting/create";
 	}
 	
 }

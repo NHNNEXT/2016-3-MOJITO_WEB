@@ -28,7 +28,9 @@ a:link {
   color: #FFF;
 }
 
-a:visited {
+.dropdown_menu_link {
   text-decoration: none;
-  color: #FFF;
-}
+  color: #BBB;
+} 
+
+

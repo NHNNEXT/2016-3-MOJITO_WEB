@@ -26,11 +26,11 @@ public class Meeting {
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_answer_writer"))
 	private User writer;
 	
-	public Date date;
+	//public Date date;
 	
-	public Time time;
+	//public Time time;
 
-	public Time bomb_time;
+	//public Time bomb_time;
 	
 	public String location;
 	
@@ -43,49 +43,22 @@ public class Meeting {
 	
 	public Meeting(){}
 	
-	public Meeting(User writer, Date date, Time time, Time bomb_time, String location, int capacity, String contents,
-			LocalDateTime createDate) {
+	public Meeting(User writer, String location, int capacity, String contents) {
 		this.writer = writer;
-		this.date = date;
-		this.time = time;
-		this.bomb_time = bomb_time;
+//		this.date = date;
+//		this.time = time;
+//		this.bomb_time = bomb_time;
 		this.location = location;
 		this.capacity = capacity;
 		this.contents = contents;
 		this.createDate = LocalDateTime.now();
 	}
 
-	public String getFormattedCreateDate() {
-		if (createDate == null){
-			return "";
-		}
-		return createDate.format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss"));
-	}
 	
 	
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public Time getTime() {
-		return time;
-	}
-
-	public void setTime(Time time) {
-		this.time = time;
-	}
-
-	public Time getBomb_time() {
-		return bomb_time;
-	}
-
-	public void setBomb_time(Time bomb_time) {
-		this.bomb_time = bomb_time;
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
 	}
 
 	public String getLocation() {
@@ -110,6 +83,10 @@ public class Meeting {
 
 	public void setContents(String contents) {
 		this.contents = contents;
+	}
+	
+	public void setWriter(User writer) {
+		this.writer = writer;
 	}
 
 	@Override
@@ -139,9 +116,10 @@ public class Meeting {
 
 	@Override
 	public String toString() {
-		return "Meeting [id=" + id + ", writer=" + writer + ", date=" + date + ", time=" + time + ", bomb_time="
-				+ bomb_time + ", location=" + location + ", capacity=" + capacity + ", contents=" + contents
-				+ ", createDate=" + createDate + "]";
+		return "Meeting [id=" + id + ", writer=" + writer + ", location=" + location + ", capacity=" + capacity
+				+ ", contents=" + contents + ", createDate=" + createDate + "]";
 	}
+	
+	
 
 }
