@@ -26,7 +26,7 @@ public class Meeting {
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_answer_writer"))
 	private User writer;
 	
-	//public Date date;
+	public LocalDateTime date;
 	
 	//public Time time;
 
@@ -55,7 +55,9 @@ public class Meeting {
 	}
 
 	
-	
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
 
 	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
@@ -116,9 +118,11 @@ public class Meeting {
 
 	@Override
 	public String toString() {
-		return "Meeting [id=" + id + ", writer=" + writer + ", location=" + location + ", capacity=" + capacity
-				+ ", contents=" + contents + ", createDate=" + createDate + "]";
+		return "Meeting [id=" + id + ", writer=" + writer + ", date=" + date + ", location=" + location + ", capacity="
+				+ capacity + ", contents=" + contents + ", createDate=" + createDate + "]";
 	}
+
+	
 	
 	
 

@@ -1,5 +1,5 @@
 //$("#demo-show-snackbar").click(loginFail);
-
+//
 //function loginFail(e) {
 //  e.preventDefault();
 //  console.log("click!");
