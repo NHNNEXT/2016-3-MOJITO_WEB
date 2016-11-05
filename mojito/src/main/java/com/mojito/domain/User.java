@@ -1,22 +1,43 @@
 package com.mojito.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class User {
 	@Id
 	@GeneratedValue
+    @JsonProperty
 	private Long id;
 
 	@Column(nullable = false, unique=true, length=40)
+    @JsonProperty
 	private String userEmail;
-	
+
 	@Column(nullable = false)
+    @JsonProperty
 	private String userPassword;
-	private String name;
+
+    @JsonProperty
+    private String name;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonProperty
+    private Set<User> friendUsers;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonProperty
+    private Set<User> requestsToUser;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonProperty
+    private Set<User> requestsToMe;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonProperty
+    private Set<User> metUsers;
 
 	public String getUserEmail() {
 		return userEmail;
@@ -43,7 +64,6 @@ public class User {
 		if (newPassword == null) {
 			return false;
 		}
-		
 		return newPassword.equals(userPassword);
 	}
 
