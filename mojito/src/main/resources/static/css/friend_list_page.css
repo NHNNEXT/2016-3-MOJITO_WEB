@@ -109,6 +109,7 @@ main {
   font-size: 20px;
   padding: 24px 0px 0px 20px;
   margin-bottom: 0px;
+  color: #2B2B2B;
 }
 
 .friend-list-one span {
@@ -133,7 +134,7 @@ main {
   font-size: 16px;
 }
 
-.friend.cancel-button {
+.friend-cancel-button {
   right: -150px;
 }
 
