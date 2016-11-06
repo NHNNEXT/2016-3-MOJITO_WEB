@@ -21,21 +21,21 @@ public class User {
 	private String userPassword;
 
     @JsonProperty
-    private String name;
+    private String userName;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonProperty
     private Set<User> friendUsers;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonProperty
     private Set<User> requestsToUser;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonProperty
     private Set<User> requestsToMe;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonProperty
     private Set<User> metUsers;
 
@@ -51,13 +51,17 @@ public class User {
 		this.userPassword = userPassword;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	
-	@Override
+
+    public Set<User> getRequestsToUser() {
+        return requestsToUser;
+    }
+
+    @Override
 	public String toString() {
-		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", name=" + name + "]";
+		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", userName=" + userName + "]";
 	}
 
 	public boolean matchPassword(String newPassword) {
@@ -75,11 +79,9 @@ public class User {
 	}
 
 	public void update(User updatedUser, String userPasswordConfirm) {
-		this.name = updatedUser.name;
+		this.userName = updatedUser.userName;
 		if (updatedUser.matchPassword(userPasswordConfirm)) {
 			this.userPassword = updatedUser.userPassword;
 		}
 	}
-
-	
 }

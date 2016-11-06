@@ -26,7 +26,7 @@ public class UserController {
     @PostMapping("/login")
     public String userLogin(String userEmail, String userPassword, HttpSession session) {
     	User user = userRepository.findByUserEmail(userEmail);
-    	if (user==null) { // 해당 email 계정이 존재하지 않는 경우
+    	if (user == null) { // 해당 email 계정이 존재하지 않는 경우
     		System.out.println("Email Not Existing!");
     		return "/login_page";
     	}
@@ -39,7 +39,7 @@ public class UserController {
     	System.out.println("Login Success!");
     	session.setAttribute(HttpSessionUtils.USER_SESSION_KEY, user);
     	
-    	System.out.println("userEmail : " + userEmail + "\n" + "userPassword : " + userPassword);
+    	System.out.println(user);
     	return "redirect:/";
     }
 
