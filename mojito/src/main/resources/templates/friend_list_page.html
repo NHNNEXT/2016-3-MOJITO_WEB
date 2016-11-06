@@ -12,47 +12,73 @@
 		<input type="text" placeholder="친구를 검색 하세요!" id="searchValue" name="searchValue" autofocus/>
 		<button>검 색</button>
 	</div>
+
+  <div class="friend-list-box friend-request-box">
+    <div class="friend-classify-list">
+      <a id="requestToUserListBtn" class="friend-classify" href="/"><span>내가 한 친구 요청</span></a>
+      <a id="requestToMeListBtn" class="friend-classify" href="/"><span>내게 온 친구 요청</span></a>
+      <p class="request-friend-nothing">친구 요청한 유저가 없습니다!</p>
+      <div class="friend-list friend-request-list">
+
+      </div>
+    </div>
+  </div>
+
 	<div class="friend-list-box">
 		<div class="friend-classify-list">
-			<a class="friend-classify" href="/html/friend_list.html"><span style="border-right: 1px solid #C4C4C4 ;">내 친구 목록</span></a>
-			<a class="friend-classify" href="/"><span>모임에서 만난 사람</span></a>
+			<a id="myFriendListBtn" class="friend-classify" href="/html/friend_list.html"><span style="border-right: 1px solid #C4C4C4 ;">내 친구 목록</span></a>
+			<a id="metUserListBtn" class="friend-classify" href="/"><span>모임에서 만난 사람</span></a>
 		</div>
+    <div class="friend-list">
 
-		<div class="friend-list">
-			<div class="friend-list-one">
-				<img src="/image/sample.jpg" alt="">
-				<p>한재엽</p>
-				<span>ljyhanl@gmail.com</span>
-				<div class="friend-add-button">
-					추가
-				</div>
-			</div>
-		</div>
-
-		<div class="friend-list">
-			<div class="friend-list-one">
-				<img src="/image/sample.jpg" alt="">
-				<p>한재엽</p>
-				<span>ljyhanl@gmail.com</span>
-				<div class="friend-add-button">
-					추가
-				</div>
-			</div>
-		</div>
-		<div class="friend-list">
-			<div class="friend-list-one">
-				<img src="/image/sample.jpg" alt="">
-				<p>한재엽</p>
-				<span>ljyhanl@gmail.com</span>
-				<div class="friend-add-button">
-					추가
-				</div>
-			</div>
-		</div>
+   </div>
 	</div>
 </main>
 
+<script type="text/html" id="requestToUser">
+  <div class="friend-list-one request-to-user">
+    <img>
+    <p>{1}</p>
+    <span>{2}</span>
+    <div class="friend-button friend-cancel-button">
+      <a href="">요청취소</a>
+    </div>
+  </div>
+</script>
+<script type="text/html" id="requestToMe">
+  <div class="friend-list-one request-to-user">
+    <img>
+    <p>{1}</p>
+    <span>{2}</span>
+    <div class="friend-button friend-accept-button">
+      <a href="">승인</a>
+    </div>
+  </div>
+</script>
+<script type="text/html" id="myFriend">
+    <div class="friend-list-one">
+      <img src="/image/sample.jpg" alt="">
+      <p>{1}</p>
+      <span>{2}</span>
+      <div class="friend-button friend-delete-button">
+        삭제
+      </div>
+    </div>
+</script>
+<script type="text/html" id="metUser">
+  <div class="friend-list">
+    <div class="friend-list-one">
+      <img src="/image/sample.jpg" alt="">
+      <p>{1}</p>
+      <span>{2}</span>
+      <div class="friend-button friend-add-button">
+        추가
+      </div>
+    </div>
+  </div>
+</script>
 <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="/static/js/friend_list.js"></script>
 <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 </body>
 </html>
