@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,27 +22,6 @@ public class UserController {
     public String login() {
         return "login_page";
     }
-    
-
-    @PostMapping("/login")
-    public String userLogin(String userEmail, String userPassword, HttpSession session) {
-    	User user = userRepository.findByUserEmail(userEmail);
-    	if (user==null) { // 해당 email 계정이 존재하지 않는 경우
-    		System.out.println("Email Not Existing!");
-    		return "/login_page";
-    	}
-    	
-    	if (!user.matchPassword(userPassword)){ // 비밀번호가 잘못된 경우
-    		System.out.println("Invalid Password!");
-    		return "/login_page";
-    	}
-    	
-    	System.out.println("Login Success!");
-    	session.setAttribute(HttpSessionUtils.USER_SESSION_KEY, user);
-    	
-    	System.out.println("userEmail : " + userEmail + "\n" + "userPassword : " + userPassword);
-    	return "redirect:/";
-    }
 
     @GetMapping("/signup")
     public String signupForm() {
@@ -49,14 +29,15 @@ public class UserController {
     }
     
     @PostMapping("/signup")
-    public String signup(User newUser) {
+    public String signup(User newUser, Model model) {
     	System.out.println("newUser : " + newUser);
+    	String emailExist = "이미 존재하는 email입니다.";
     	
     	if(userRepository.findByUserEmail(newUser.getUserEmail()) == null) {
     		userRepository.save(newUser);
     		return "redirect:/";
     	} else {
-    		System.out.println("이미 존재하는 email입니다.");
+    		System.out.println(emailExist);
     	}
     	
     	return "/signup_page";
@@ -124,8 +105,7 @@ public class UserController {
     	dbUser.update(updatedUser, userPasswordConfirm);
     	userRepository.save(dbUser);
     	
-    	return "redirect:/logout";
-    	
+    	return "redirect:/logout";   	
     }
 }
 

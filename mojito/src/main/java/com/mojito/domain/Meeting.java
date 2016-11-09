@@ -28,13 +28,15 @@ public class Meeting {
 	
 	public LocalDateTime date;
 	
-	//public Time time;
+	public Time time;
 
-	//public Time bomb_time;
+	public Time bomb_time;
 	
 	public String location;
 	
 	public int capacity;
+	
+	public int current_participants;
 	
 	@Lob
 	public String contents;
@@ -45,9 +47,9 @@ public class Meeting {
 	
 	public Meeting(User writer, String location, int capacity, String contents) {
 		this.writer = writer;
-//		this.date = date;
-//		this.time = time;
-//		this.bomb_time = bomb_time;
+		this.date = date;
+		this.time = time;
+		this.bomb_time = bomb_time;
 		this.location = location;
 		this.capacity = capacity;
 		this.contents = contents;
@@ -121,9 +123,4 @@ public class Meeting {
 		return "Meeting [id=" + id + ", writer=" + writer + ", date=" + date + ", location=" + location + ", capacity="
 				+ capacity + ", contents=" + contents + ", createDate=" + createDate + "]";
 	}
-
-	
-	
-	
-
 }

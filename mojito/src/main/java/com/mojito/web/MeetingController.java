@@ -55,6 +55,5 @@ public class MeetingController {
 		System.out.println("meeting: "+meeting);
 		meetingRepository.save(meeting);
 		return "redirect:/meeting/create";
-	}
-	
+	}	
 }

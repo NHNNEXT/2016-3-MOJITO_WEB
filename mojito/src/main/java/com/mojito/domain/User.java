@@ -39,12 +39,12 @@ public class User {
 		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", name=" + name + "]";
 	}
 
-	public boolean matchPassword(String newPassword) {
-		if (newPassword == null) {
+	public boolean matchPassword(User newUser) {
+		if (newUser.userPassword == null) {
 			return false;
 		}
 		
-		return newPassword.equals(userPassword);
+		return newUser.userPassword.equals(userPassword);
 	}
 
 	public boolean matchId(Long newId) {
@@ -56,10 +56,8 @@ public class User {
 
 	public void update(User updatedUser, String userPasswordConfirm) {
 		this.name = updatedUser.name;
-		if (updatedUser.matchPassword(userPasswordConfirm)) {
+		if (updatedUser.userPassword.equals(userPasswordConfirm)) {
 			this.userPassword = updatedUser.userPassword;
 		}
 	}
-
-	
 }
