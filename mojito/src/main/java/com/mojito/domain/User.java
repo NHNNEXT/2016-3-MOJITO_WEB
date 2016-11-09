@@ -16,6 +16,11 @@ public class User {
 	
 	@Column(nullable = false)
 	private String userPassword;
+	private String name;
+
+	public String getUserEmail() {
+		return userEmail;
+	}
 
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
@@ -25,18 +30,34 @@ public class User {
 		this.userPassword = userPassword;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword + "]";
+		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", name=" + name + "]";
 	}
 
-	public boolean matchPassword(String newPassword) {
-		if (newPassword == null) {
+	public boolean matchPassword(User newUser) {
+		if (newUser.userPassword == null) {
 			return false;
 		}
 		
-		return newPassword.equals(userPassword);
+		return newUser.userPassword.equals(userPassword);
 	}
 
-	
+	public boolean matchId(Long newId) {
+		if (newId == null) {
+			return false;
+		}
+		return newId.equals(id);
+	}
+
+	public void update(User updatedUser, String userPasswordConfirm) {
+		this.name = updatedUser.name;
+		if (updatedUser.userPassword.equals(userPasswordConfirm)) {
+			this.userPassword = updatedUser.userPassword;
+		}
+	}
 }

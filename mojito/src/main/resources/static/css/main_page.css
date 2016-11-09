@@ -80,7 +80,7 @@ a:hover{
 
 .basic_info {
   margin-left: 230px;
-  margin-right: 40px;
+  margin-right: 5px;
   background: #F7F8F9;
 }
 
@@ -92,17 +92,9 @@ a:hover{
 }
 
 .detail_button {
-  margin-left: 550px;
-  border: 2px solid #43D080;
-  padding: 5px;
-  border-radius: 5px;
-  color: #000;
+	left: 540px;
 }
 
 .join_button {
-  margin-left: 10px;
-  border: 2px solid #43D080;
-  padding: 5px 15px;
-  border-radius: 5px;
-  color: #000;
+	left: 550px;
 }

@@ -2,14 +2,30 @@
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <!-- Title -->
-      <a href="/main_page"><span class="mdl-layout-title">Mojito</span></a>
+      <a href="/"><span class="mdl-layout-title">Mojito</span></a>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <a class="mdl-navigation__link" href="/meeting/create">사용자</a>
-        <a class="mdl-navigation__link" href="/meeting/my">모임</a>
-        <a class="mdl-navigation__link" href="/friends">친구</a>
+      {{^sessionedUser}}
+        <a class="mdl-navigation__link" href="/">로그인</a>
+        <a class="mdl-navigation__link" href="/signup">회원가입</a>
+      {{/sessionedUser}}
+      {{#sessionedUser}}
+        <a class="mdl-navigation__link" href="/meeting/create"><i class="material-icons">mode_edit</i> 새 모임</a>
+        <a class="mdl-navigation__link" href="#">{{name}}님, 안녕하세요!</a>
+      	<button id="menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+      		<i class="material-icons">more_vert</i>
+      	</button>
+      	<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu-lower-right">
+          <li class="mdl-menu__item"><a class="dropdown_menu_link" href="/meeting/my">내 모임</a></li>
+      	  <li class="mdl-menu__item"><a class="dropdown_menu_link" href="/friends">내 친구</a></li>
+      	  <li class="mdl-menu__item"><a class="dropdown_menu_link" href="/{{id}}/updateForm">개인 정보 수정</a></li>
+     	  <li class="mdl-menu__item"><a class="dropdown_menu_link" href="/logout">로그아웃</a></li>
+    	</ul>
+      {{/sessionedUser}}
       </nav>
     </div>
   </header>
+  
+ 

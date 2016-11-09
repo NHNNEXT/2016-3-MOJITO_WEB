@@ -2,10 +2,9 @@
 .form-group {
   margin: 20px;
   padding-bottom: 20px;
-  border-style: solid;
   border-bottom-color: #CCC;
   border-bottom-width: 1px;
-  border-style: solid;
+  border-bottom-style: solid;
 }
 
 .form-group label {
