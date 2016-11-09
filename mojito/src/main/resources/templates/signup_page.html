@@ -12,7 +12,7 @@
       <div class="mdl-card__title">
       </div>
 
-      <form action="#">
+      <form id="signupForm" action="/signup" method="post">
         <div class="mdl-card__supporting-text">
           <div class="signup_label">이메일</div>
           <div class="mdl-textfield mdl-js-textfield">
@@ -26,13 +26,13 @@
           </div>
           <div class="signup_label">이름</div>
           <div class="mdl-textfield mdl-js-textfield">
-            <label class="mdl-textfield__label" for="userName">Name</label>
-            <input class="mdl-textfield__input" type="text" id="userName" name="userName">
+            <label class="mdl-textfield__label" for="name">Name</label>
+            <input class="mdl-textfield__input" type="text" id="name" name="name">
           </div>
         </div>
 
         <div class="mdl-card__actions mdl-card--border">
-          <a href="/login"
+          <a href="#" onclick="document.getElementById('signupForm').submit();"
              class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect submit-button">
             완료
           </a>
