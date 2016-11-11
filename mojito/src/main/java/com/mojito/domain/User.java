@@ -19,8 +19,8 @@ public class User {
 	@Column(nullable = false)
     @JsonProperty
 	private String userPassword;
-	private String name;
 
+	@Column(nullable = false)
     @JsonProperty
     private String userName;
 
@@ -80,7 +80,7 @@ public class User {
 	}
 
 	public void update(User updatedUser, String userPasswordConfirm) {
-		this.name = updatedUser.name;
+		this.userName = updatedUser.userName;
 		if (updatedUser.userPassword.equals(userPasswordConfirm)) {
 			this.userPassword = updatedUser.userPassword;
 		}
