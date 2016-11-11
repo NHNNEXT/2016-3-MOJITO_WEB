@@ -14,17 +14,10 @@
 		<!-- Main Card -->
 		<div class="container" id="main">
 			{{#sessionedUser}}
-<<<<<<< HEAD
-			<form name="create_article" method="post" action="/meeting/{{id}}/create_article">
-			{{/sessionedUser}}
-				<div class="form-group">
-					<label for="date">날짜 선택</label> <input class="form-control" type="date" id="date" name="date" placeholder="모임 날짜">
-=======
 			<form name="/create_meeting" method="post" action="/meeting/{{id}}/create_article">
 			{{/sessionedUser}}
 				<div class="form-group">
 					<label for="date">날짜 선택</label> <input class="form-control" type="date" id="date" name="day" placeholder="모임 날짜">
->>>>>>> origin/develop
 				</div>
 				
 				<div class="form-group">
@@ -38,12 +31,8 @@
 				<div class="form-group">
 					<label for="location">장소 선택</label> <input type="text" class="form-control" id="location" name="location"
 						placeholder="모임 장소"> <input type="submit" value="검색" /> 
-<<<<<<< HEAD
 						<input type="checkbox" id="placeNone" name="noUseMap">
-=======
-						<input type="checkbox" id="placeNone" name="noUseMap"> 
->>>>>>> origin/develop
-						<label for="placeNone" class="place_none">장소 없음 / 미정</label><br></br> 
+						<label for="placeNone" class="place_none">장소 없음 / 미정</label><br></br>
 						<iframe width="600" height="450" frameborder="0" style="border: 0"
 								src="https://www.google.com/maps/embed/v1/search?q=Seoul&key=AIzaSyC7FOJMYs0GvlYdn97cqrRQnqS8LynVzJs"
 								allowfullscreen>
