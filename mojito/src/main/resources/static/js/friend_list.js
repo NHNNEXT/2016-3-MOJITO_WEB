@@ -1,35 +1,133 @@
 $(document).ready(function () {
-    var requestToUserListTag = document.getElementById('requestToUserListBtn');
-    requestToUserListTag.addEventListener('click', showRequestToUserList);
+	var $requestToUserListBtn = $('#requestToUserListBtn');
+	var $myFriendListBtn = $('#myFriendListBtn');
+	$requestToUserListBtn.on('click', showRequestToUserList);
+	$('#requestToMeListBtn').on('click', showRequestToMeList);
+	$myFriendListBtn.on('click', showFriendList);
+	$('#metUserListBtn').on('click', showMetUsers);
+	$requestToUserListBtn.trigger('click');
+	$myFriendListBtn.trigger('click');
 });
 
 function showRequestToUserList(e) {
-    e.preventDefault();
+	var url = $(e.target).attr('href');
+	e.preventDefault();
     $.ajax({
         type: 'get',
-        url: '/api/user/showRequestToUser',
+        url: url,
         dataType: 'json',
         error: onError,
-        success: function (data) {
-            var $list = $(this).parent().find('.friend-list');
-            if (data[0] === null) {
-                var nothingTemplate = $('#non-list').html();
-                $list.append(nothingTemplate);
-            } else {
-                var $requestToUser = $('#requestToUser').html();
-                for (var i in data) {
-                    var template = $requestToUser.format(
-                        data[i].userName, data[i].userEmail
-                    );
-                    $list.append(template);
-                }
-            }
-        }.bind(this)
+        success: printRequestToUserList
     });
 }
 
+function printRequestToUserList(data) {
+    var $list = $('.friend-request-list');
+    if (data[0] === undefined) {
+        var nothingTemplate = $('#non-list').html();
+        $list.append(nothingTemplate);
+    } else {
+        var $requestToUser = $('#requestToUser').html();
+        var insertTemplate = "";
+        $('.friend-request-box').css('height', 200);
+        for (var i in data) {
+            var template = $requestToUser.format(data[i].userName, data[i].userEmail);
+            insertTemplate += template;
+            $('.friend-request-box').css('height', '+=90');
+        }
+        $list.children().remove();
+        $list.append(insertTemplate);
+    }
+}
+
+function showRequestToMeList(e) {
+	var url = $(e.target).attr('href');
+	e.preventDefault();
+	$.ajax({
+		type: 'get',
+		url: url,
+		dataType: 'json',
+		error: onError,
+		success: printRequestToMeList
+	});
+}
+
+function printRequestToMeList(data) {
+    var $list = $('.friend-request-list');
+    $list.children().remove();
+    if (data[0] === undefined) {
+        var nothingTemplate = $('#non-list').html();
+        $list.replaceWith(nothingTemplate);
+    } else {
+        var $requestToUser = $('#requestToMe').html();
+        $('.friend-request-box').css('height', 200);
+        for (var i in data) {
+        	var template = $requestToUser.format(data[i].userName, data[i].userEmail);
+            $('.friend-request-box').css('height', '+=90');
+            $list.append(template);
+        }
+    }
+}
+
+function showFriendList(e) {
+	var url = $(e.target).attr('href');
+	e.preventDefault();
+	$.ajax({
+		type: 'get',
+		url: url,
+		dataType: 'json',
+		error: onError,
+		success: printFriendList
+	});
+}
+
+function printFriendList(data) {
+    var $list = $('.friend-list');
+    $list.children().remove();
+    if (data[0] === undefined) {
+        var nothingTemplate = $('#non-list').html();
+        $list.replaceWith(nothingTemplate);
+    } else {
+        var $requestToUser = $('#myFriend').html();
+        $('.friend-list-box').css('height', 200);
+        for (var i in data) {
+        	var template = $requestToUser.format(data[i].userName, data[i].userEmail);
+            $('.friend-list-box').css('height', '+=90');
+            $list.append(template);
+        }
+    }
+}
+
+function showMetUsers(e) {
+	var url = $(e.target).attr('href');
+	e.preventDefault();
+	$.ajax({
+		type: 'get',
+		url: url,
+		dataType: 'json',
+		error: onError,
+		success: printMetUsers
+	});
+}
+
+function printMetUsers(data) {
+    var $list = $('.friend-list');
+    $list.children().remove();
+    if (data[0] === undefined) {
+        var nothingTemplate = $('#non-list').html();
+        $list.replaceWith(nothingTemplate);
+    } else {
+        var $requestToUser = $('#metUser').html();
+        $('.friend-list-box').css('height', 200);
+        for (var i in data) {
+        	var template = $requestToUser.format(data[i].userName, data[i].userEmail);
+            $('.friend-list-box').css('height', '+=90');
+            $list.append(template);
+        }
+    }
+}
+
 function onError(data, status) {
-    alert('로그인을 해주세요');
     console.log('onError execute!');
 }
 
