@@ -1,8 +1,11 @@
 package com.mojito.web;
 
+import java.util.Set;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,5 +42,45 @@ public class ApiUserController {
 
 		session.setAttribute(HttpSessionUtils.USER_SESSION_KEY, user);
 		return LoginResult.ok();
+	}
+	
+    @GetMapping("/showRequestToUser")
+    public Set<User> showListOfRequestToUser(HttpSession session) {
+        if(!HttpSessionUtils.isLoginUser(session)) {
+            throw new IllegalStateException("Not Login");
+	    }
+        User user = HttpSessionUtils.getUserFromSession(session);
+	    System.out.println(user.getRequestsToUser());
+	    return user.getRequestsToUser();
+	}
+	
+    @GetMapping("/showRequestToMe")
+    public Set<User> showListOfRequestToMe(HttpSession session) {
+        if(!HttpSessionUtils.isLoginUser(session)) {
+            throw new IllegalStateException("Not Login");
+	    }
+        User user = HttpSessionUtils.getUserFromSession(session);
+	    System.out.println(user.getRequestsToMe());
+	    return user.getRequestsToMe();
+	}
+	
+    @GetMapping("/showFriendList")
+    public Set<User> showListOfFriend(HttpSession session) {
+        if(!HttpSessionUtils.isLoginUser(session)) {
+            throw new IllegalStateException("Not Login");
+	    }
+        User user = HttpSessionUtils.getUserFromSession(session);
+	    System.out.println(user.getFriendUsers());
+	    return user.getFriendUsers();
+	}
+	
+    @GetMapping("/showMetUsers")
+    public Set<User> showListOfMetUsers(HttpSession session) {
+        if(!HttpSessionUtils.isLoginUser(session)) {
+            throw new IllegalStateException("Not Login");
+	    }
+        User user = HttpSessionUtils.getUserFromSession(session);
+	    System.out.println(user.getMetUsers());
+	    return user.getMetUsers();
 	}
 }
