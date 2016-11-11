@@ -13,15 +13,26 @@
       {{/sessionedUser}}
       {{#sessionedUser}}
         <a class="mdl-navigation__link" href="/meeting/create"><i class="material-icons">mode_edit</i> 새 모임</a>
+<<<<<<< HEAD
         <a class="mdl-navigation__link" href="#">{{userName}}님, 안녕하세요!</a>
+=======
+        <a class="mdl-navigation__link" href="#">{{name}}님, 안녕하세요!</a>
+>>>>>>> origin/develop
       	<button id="menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
       		<i class="material-icons">more_vert</i>
       	</button>
       	<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu-lower-right">
+<<<<<<< HEAD
           <a class="dropdown_menu_link" href="/meeting/my"><li class="mdl-menu__item">내 모임</li></a>
       	  <a class="dropdown_menu_link" href="/friends"><li class="mdl-menu__item">내 친구</li></a>
       	  <a class="dropdown_menu_link" href="/{{id}}/updateForm"><li class="mdl-menu__item">개인 정보 수정</li></a>
           <a class="dropdown_menu_link" href="/logout"> <li class="mdl-menu__item">로그아웃</li></a>
+=======
+          <li class="mdl-menu__item"><a class="dropdown_menu_link" href="/meeting/my">내 모임</a></li>
+      	  <li class="mdl-menu__item"><a class="dropdown_menu_link" href="/friends">내 친구</a></li>
+      	  <li class="mdl-menu__item"><a class="dropdown_menu_link" href="/{{id}}/updateForm">개인 정보 수정</a></li>
+     	  <li class="mdl-menu__item"><a class="dropdown_menu_link" href="/logout">로그아웃</a></li>
+>>>>>>> origin/develop
     	</ul>
       {{/sessionedUser}}
       </nav>

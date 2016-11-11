@@ -41,8 +41,14 @@ public class MeetingController {
 	}
 	
 	@PostMapping("/{id}/create_article")
-	public String createArticle(@PathVariable Long id, Meeting meeting, HttpSession session){
+	public String createArticle(@PathVariable Long id, Meeting meeting, HttpSession session, String day, String time){
 		User sessionUser = HttpSessionUtils.getUserFromSession(session);
+		System.out.println("date : " + day);
+		System.out.println("time : " + time);
+		String toConvert = day + " " + time;
+		System.out.println(toConvert);
+		System.out.println(LocalDateTimeConverter.converter(toConvert));
+		meeting.setDate(LocalDateTimeConverter.converter(toConvert));
 		meeting.setWriter(sessionUser);
 		meeting.setCapacity(5);
 		meeting.setCreateDate(LocalDateTime.now());
@@ -50,5 +56,4 @@ public class MeetingController {
 		meetingRepository.save(meeting);
 		return "redirect:/meeting/create";
 	}
-	
 }

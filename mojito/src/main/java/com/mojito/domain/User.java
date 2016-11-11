@@ -19,6 +19,7 @@ public class User {
 	@Column(nullable = false)
     @JsonProperty
 	private String userPassword;
+	private String name;
 
     @JsonProperty
     private String userName;
@@ -64,11 +65,11 @@ public class User {
 		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", userName=" + userName + "]";
 	}
 
-	public boolean matchPassword(String newPassword) {
-		if (newPassword == null) {
+	public boolean matchPassword(User newUser) {
+		if (newUser.userPassword == null) {
 			return false;
 		}
-		return newPassword.equals(userPassword);
+		return newUser.userPassword.equals(userPassword);
 	}
 
 	public boolean matchId(Long newId) {
@@ -79,8 +80,8 @@ public class User {
 	}
 
 	public void update(User updatedUser, String userPasswordConfirm) {
-		this.userName = updatedUser.userName;
-		if (updatedUser.matchPassword(userPasswordConfirm)) {
+		this.name = updatedUser.name;
+		if (updatedUser.userPassword.equals(userPasswordConfirm)) {
 			this.userPassword = updatedUser.userPassword;
 		}
 	}
