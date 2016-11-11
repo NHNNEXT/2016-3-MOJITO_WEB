@@ -30,16 +30,18 @@ public class UserController {
     @PostMapping("/signup")
     public String signup(User newUser) {
     	System.out.println("newUser : " + newUser);
+    	String emailExist = "이미 존재하는 email입니다.";
 
     	if(userRepository.findByUserEmail(newUser.getUserEmail()) == null) {
     		userRepository.save(newUser);
     		return "redirect:/";
     	} else {
-    		System.out.println("이미 존재하는 email입니다.");
+    		System.out.println(emailExist);
     	}
 
     	return "/signup_page";
     }
+
     @GetMapping("/logout")
     public String userLogout(HttpSession session) {
     	session.removeAttribute(HttpSessionUtils.USER_SESSION_KEY);
@@ -71,6 +73,7 @@ public class UserController {
     	if (!HttpSessionUtils.isLoginUser(session)) {
     		return "redirect:/login";
     	}
+
     	User user = userRepository.findOne(id);
 
     	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
@@ -84,7 +87,6 @@ public class UserController {
 
     @PostMapping("/{id}/update")
     public String update(@PathVariable Long id, User updatedUser, String userPasswordConfirm, HttpSession session) {
-		System.out.println("여기 들어오긴 하나?");
 		if (!HttpSessionUtils.isLoginUser(session)) {
 			return "redirect:/login";
 		}
@@ -105,26 +107,3 @@ public class UserController {
 		return "redirect:/logout";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
