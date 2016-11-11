@@ -55,11 +55,23 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	
+	public Set<User> getFriendUsers() {
+		return friendUsers;
+	}
 
     public Set<User> getRequestsToUser() {
         return requestsToUser;
     }
-
+	
+	public Set<User> getRequestsToMe() {
+		return requestsToMe;
+	}
+	
+	public Set<User> getMetUsers() {
+		return metUsers;
+	}
+	
     @Override
 	public String toString() {
 		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", userName=" + userName + "]";
