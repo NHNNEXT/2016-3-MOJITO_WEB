@@ -12,10 +12,6 @@ main {
   height: 105%;
 }
 
-a:hover{
-  color: #000;
-}
-
 .main_page_label {
   width: 880px;
   margin: 3em auto 3em auto;
