@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mojito.domain.LoginResult;
+import com.mojito.domain.RequestedListResult;
 import com.mojito.domain.User;
 import com.mojito.domain.UserRepository;
 
@@ -46,7 +47,7 @@ public class ApiUserController {
 	}
     
     @GetMapping("/show/{listId}")
-    public Set<User> showList(@PathVariable Long listId, HttpSession session) {
+    public RequestedListResult showList(@PathVariable Long listId, HttpSession session) {
     	if (!HttpSessionUtils.isLoginUser(session)) {
     		throw new IllegalStateException("Not Login");
     	}
@@ -54,19 +55,19 @@ public class ApiUserController {
     	
     	if (listId == 1) {
     		System.out.println(user.getRequestsToUser());
-    		return user.getRequestsToUser();
+    		return RequestedListResult.getRequestsToUser(user);
     	}
     	if (listId == 2) {
     		System.out.println(user.getRequestsToMe());
-    		return user.getRequestsToMe();
+    		return RequestedListResult.getRequestsToMe(user);
     	}
     	if (listId == 3) {
     		System.out.println(user.getFriendUsers());
-    		return user.getFriendUsers();
+    		return RequestedListResult.getFriendUsers(user);
     	}
     	if (listId == 4) {
     		System.out.println(user.getMetUsers());
-    		return user.getMetUsers();
+    		return RequestedListResult.getMetUsers(user);
     	}
     	
     	throw new IllegalStateException("Invalid List Request");
