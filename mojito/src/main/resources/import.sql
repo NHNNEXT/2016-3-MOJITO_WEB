@@ -8,7 +8,10 @@ INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('이도형', '4@
 
 -- TEST DATA --
 INSERT INTO USER_FRIEND_USERS (user_id, friend_users_id) VALUES (3, 4); -- 재엽, 원영 친구관계
-INSERT INTO USER_FRIEND_USERS (user_id, friend_users_id) VALUES (3, 1); -- 대훈, 재엽 친구관계
+INSERT INTO USER_FRIEND_USERS (user_id, friend_users_id) VALUES (3, 1); -- 재엽, 대훈 친구관계
+INSERT INTO USER_FRIEND_USERS (user_id, friend_users_id) VALUES (4, 3); -- 원영, 재엽 친구관계
+INSERT INTO USER_FRIEND_USERS (user_id, friend_users_id) VALUES (1, 3); -- 대훈, 재엽 친구관계
+
 INSERT INTO USER_REQUESTS_TO_ME (user_id, requests_to_me_id) VALUES (3, 5); -- 재엽에게 용재가 친구 요청
 INSERT INTO USER_REQUESTS_TO_USER (user_id, requests_to_user_id) VALUES (3, 6); -- 재엽이 우현이에게 친구 요청
 INSERT INTO USER_REQUESTS_TO_USER (user_id, requests_to_user_id) VALUES (3, 7); -- 재엽이 도형이형에게 친구 요청

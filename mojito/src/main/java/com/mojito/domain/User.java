@@ -1,9 +1,17 @@
 package com.mojito.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import javax.persistence.*;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class User {
@@ -25,19 +33,19 @@ public class User {
     private String userName;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonProperty
+    @JsonIgnore
     private Set<User> friendUsers;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonProperty
+    @JsonIgnore
     private Set<User> requestsToUser;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonProperty
+    @JsonIgnore
     private Set<User> requestsToMe;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonProperty
+    @JsonIgnore
     private Set<User> metUsers;
 
 	public String getUserEmail() {
