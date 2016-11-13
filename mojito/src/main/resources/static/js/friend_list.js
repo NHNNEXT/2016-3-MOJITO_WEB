@@ -23,6 +23,7 @@ function showRequestedList(e) {
 }
 
 function printRequestedList(data, status) {
+	console.log(data);
 	var $list = $(data.listName);
 	$list.children().remove();
     if (data.list[0] === undefined) {
