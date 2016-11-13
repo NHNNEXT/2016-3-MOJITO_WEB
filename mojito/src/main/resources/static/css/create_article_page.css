@@ -23,9 +23,8 @@
   height: 25px;
   background-color: ivory;
   border: 1px solid #00c7b3;
-  font-family: 굴림;
   font-size: 10pt;
-  color: green "
+  color: green;
 }
 
 .form-group .place_none {
@@ -104,6 +103,3 @@
   background-image: -ms-linear-gradient(top, #007db3 0%, #92d953 100%);
   color: #fff;
 }
-
-
-

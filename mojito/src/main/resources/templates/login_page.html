@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 {{> /include/head}}
+<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 </head>
 
 <body>
@@ -31,7 +32,7 @@
           <div class="social-login">
             <a href="#" style="color: #000; text-decoration: none;">
             <div class="kakao-login-button">
-              <span><img src=""></span>페이스북 계정으로 로그인
+              페이스북 계정으로 로그인
             </div>
             </a>
           </div>
@@ -39,7 +40,6 @@
             <a href="#" id="loginButton" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect submit-button">
               로그인
             </a>
-            <!-- <button id="show-snackbar" class="mdl-button mdl-js-button" type="button">로그인</button> -->
             <a href="./" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect cancel-button">
               취소
             </a>
@@ -47,13 +47,10 @@
         </form>
       </div>
     </div>
-    
-    <!-- login status snackbar -->
 	<div id="login_status_snackbar" class="mdl-js-snackbar mdl-snackbar mdl-color--accent">
 		<div class="mdl-snackbar__text"></div>
 		<button class="mdl-snackbar__action" type="button"></button>
 	</div>
-	
   </main>
 
 <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>

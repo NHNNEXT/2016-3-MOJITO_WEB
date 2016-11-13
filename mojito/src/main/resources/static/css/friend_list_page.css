@@ -1,5 +1,6 @@
 main {
   display: block;
+  color: #E9EBEE;
 }
 
 .friend-searchbar {
@@ -37,10 +38,17 @@ main {
   outline: none;
 }
 
-.friend-list-box {
+.request-friend-nothing {
+  margin: 2em;
+  text-align: center;
+  font-size: 24px;
+  color: #B7B7B7;
+}
+
+.friend-list-box, .friend-request-box {
   margin: 1em auto;
   width: 860px;
-  height: 50em;
+  height: 200px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -52,18 +60,19 @@ main {
   border-bottom: 1px solid #C4C4C4;
 }
 
-.friend-classify span {
+.friend-classify{
   display: inline-block;
   width: 417px;
   text-align: center;
   padding: 22px 0px;
   font-size: 18px;
+  text-decoration: none;
   color: #7D7D7D;
   transition: all, 0.4s;
   transition-timing-function: ease;
 }
 
-.friend-classify span:hover {
+.friend-classify:hover {
   color: #3FCF81;
   transition: all, 0.3s;
   transition-timing-function: ease;
@@ -97,6 +106,7 @@ main {
   font-size: 20px;
   padding: 24px 0px 0px 20px;
   margin-bottom: 0px;
+  color: #2B2B2B;
 }
 
 .friend-list-one span {
@@ -108,7 +118,7 @@ main {
   padding-left: 23px;
 }
 
-.friend-add-button {
+.friend-button {
   position: relative;
   top: -16px;
   right: -175px;
@@ -119,4 +129,17 @@ main {
   padding: 12px 16px;
   border-radius: 5px;
   font-size: 16px;
+}
+
+.friend-button a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.friend-cancel-button {
+  right: -150px;
+}
+
+.friend-delete-button {
+  background: #FF3021;
 }

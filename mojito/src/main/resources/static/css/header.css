@@ -6,22 +6,22 @@
   background: linear-gradient(45deg, #00C7B3, #92D953); /* Standard syntax */
 }
 
-a {
+header a {
   color: #FFF;
   text-decoration: none;
 }
 
-a:hover {
+header a:hover {
   color: #FFF;
   text-decoration: none;
 }
 
-a:active {
+header a:active {
   text-decoration: none;
   color: #FFF;
 }
 
-a:link {
+header a:link {
   text-decoration: none;
   color: #FFF;
 }
