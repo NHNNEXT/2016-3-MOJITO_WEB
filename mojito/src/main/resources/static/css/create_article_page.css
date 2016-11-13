@@ -1,6 +1,76 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+h1{
+	margin-left: 100px;
+	font-size: 30px;
+	font-family:'Jeju Gothic', sans-serif;
+}
 .container{
-	margin-top : 50px;
+	margin-top : 20px;
 	margin-left : 100px;
 	margin-right : 100px;
+	margin-bottom: 100px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #DDD;
 }
+
+.article_contents{
+	margin: 30px;
+	padding-bottom: 30px;
+	border-bottom-style: solid;
+	border-bottom-color: #DDD;
+	border-bottom-width: 1px;
+}
+
+.article_index{
+	display: inline-block;
+	width: 150px;
+	font-size: 20px;
+	font-family: 'Jeju Gothic', sans-serif;
+}
+
+.mdl-textfield{
+	display: inline-block;
+	width: 400px;
+}
+
+.mdl-textfield__input{
+	background-color: #F7F8E0;
+	display: inline-block;
+	border-style: solid;
+	border-color: #DDD;
+	border-width: 1px;
+}
+
+.mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect{
+	display: inline-block;
+}
+
+#article_detail_index{
+	display: block;
+}
+
+#textarea{
+	width: 400px;
+}
+
+#input_detail, #label_detail{
+	display: block;
+	width: 800px;
+}
+
+#pre_view, #temporary_save{
+	background-color: #DDD;
+}
+
+#complete{
+	background-color: #92D953;
+}
+
+.buttonArea{
+	text-align: center;
+	margin-bottom: 30px;
+}
+
 

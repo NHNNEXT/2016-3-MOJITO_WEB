@@ -5,12 +5,14 @@
 <head>
 {{> /include/head}}
 <link rel="stylesheet" href="../css/create_article_page.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
 <body>
 	{{> /include/header}}
 	<main class="mdl-layout__content">
 	<div class="page-content view_detail_model">
+	<h1>모임 개설하기</h1>
 		<!-- Main Card -->
 		<div class="container" id="main">
 			{{#sessionedUser}}
@@ -22,7 +24,7 @@
 					<label class="article_index" for="date">날짜 선택</label>
 					<div class="mdl-textfield mdl-js-textfield">
 						<input class="mdl-textfield__input" type="date" id="date">
-							<label class="mdl-textfield__label" for="date"></label>
+						<label class="mdl-textfield__label" for="date"></label>
 					</div>
 				</div>
 
@@ -30,15 +32,15 @@
 					<label class="article_index" for="time">시간 선택</label>
 					<div class="mdl-textfield mdl-js-textfield">
 						<input class="mdl-textfield__input" type="time" id="time">
-							<label class="mdl-textfield__label" for="time"></label>
+						<label class="mdl-textfield__label" for="time"></label>
 					</div>
 				</div>
 
 				<div class="article_contents" id="article_bomb_time_atrea">
-					<label class="article_index" for="time">폭파시간 선택</label>
+					<label class="article_index" for="bomb_time">폭파시간 선택</label>
 					<div class="mdl-textfield mdl-js-textfield">
 						<input class="mdl-textfield__input" type="time" id="bomb_time">
-							<label class="mdl-textfield__label" for="time"></label>
+						<label class="mdl-textfield__label" for="time"></label>
 					</div>
 				</div>
 
@@ -46,7 +48,7 @@
 					<label class="article_index"for="location">장소 선택</label>
 					<div class="mdl-textfield mdl-js-textfield">
 						<input class="mdl-textfield__input" type="text" id="location">
-							<label class="mdl-textfield__label" for="location"></label>
+						<label class="mdl-textfield__label" for="location"></label>
 					</div>
 					<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2"> 
 						<input type="checkbox" id="checkbox-2" class="mdl-checkbox__input"> 
@@ -64,10 +66,10 @@
 				</div>
 				
 				<div class="article_contents" id="article_detail">
-					<label class="article_index" for="time">모임 상세</label>
-					<div class="mdl-textfield mdl-js-textfield">
-						<textarea class="mdl-textfield__input" type="text" rows= "3" id="detail"></textarea>
-						<label class="mdl-textfield__label" for="detail"></label>
+					<label class="article_index" id="article_detail_index" for="detail">모임 상세</label>
+					<div class="mdl-textfield mdl-js-textfield" id="textarea">
+						<textarea class="mdl-textfield__input" type="text" rows= "10" id="input_detail"></textarea>
+						<label class="mdl-textfield__label" for="detail" id="label_detail"></label>
 					</div>
 				</div>
 				
@@ -83,9 +85,6 @@
 					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="complete">
 					  개설완료
 					</button>
-					<button type="button" class="normalBtn previewBtn">미리보기</button>
-					<button type="button" class="normalBtn draftBtn">임시저장</button>
-					<input type="submit" class="create_meeting" value="개설완료" />
 				</div>
 
 			</form>
