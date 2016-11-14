@@ -23,7 +23,7 @@
 				<div class="article_contents" id="article_date_atrea">
 					<label class="article_index" for="date">날짜 선택</label>
 					<div class="mdl-textfield mdl-js-textfield">
-						<input class="mdl-textfield__input" type="date" id="date">
+						<input class="mdl-textfield__input" type="date" id="date" name="meeting_date">
 						<label class="mdl-textfield__label" for="date"></label>
 					</div>
 				</div>
@@ -31,7 +31,7 @@
 				<div class="article_contents" id="article_time_atrea">
 					<label class="article_index" for="time">시간 선택</label>
 					<div class="mdl-textfield mdl-js-textfield">
-						<input class="mdl-textfield__input" type="time" id="time">
+						<input class="mdl-textfield__input" type="time" id="time" name="meeting_time">
 						<label class="mdl-textfield__label" for="time"></label>
 					</div>
 				</div>
@@ -39,7 +39,7 @@
 				<div class="article_contents" id="article_bomb_time_atrea">
 					<label class="article_index" for="bomb_time">폭파시간 선택</label>
 					<div class="mdl-textfield mdl-js-textfield">
-						<input class="mdl-textfield__input" type="time" id="bomb_time">
+						<input class="mdl-textfield__input" type="time" id="bomb_time" name="bomb_time">
 						<label class="mdl-textfield__label" for="time"></label>
 					</div>
 				</div>
@@ -47,31 +47,32 @@
 				<div class="article_contents" id="article_location_atrea">
 					<label class="article_index"for="location">장소 선택</label>
 					<div class="mdl-textfield mdl-js-textfield">
-						<input class="mdl-textfield__input" type="text" id="location">
+						<input class="mdl-textfield__input" type="text" id="location" name="meeting_location">
 						<label class="mdl-textfield__label" for="location"></label>
 						<label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
 					      <i class="material-icons">search</i>
 					    </label>
 					</div>
 					<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2"> 
-						<input type="checkbox" id="checkbox-2" class="mdl-checkbox__input"> 
+						<input type="checkbox" id="checkbox-2" class="mdl-checkbox__input" name="meeting_no_location"> 
 						<span class="mdl-checkbox__label">장소 없음/미정</span></label>
 						<iframe width="600" height="450" frameborder="0" style="border: 0"
 								src="https://www.google.com/maps/embed/v1/search?q=Seoul&key=AIzaSyC7FOJMYs0GvlYdn97cqrRQnqS8LynVzJs"
 								allowfullscreen> </iframe>
 				</div>
 				
-				<div class="article_contents" id="capacity">
+				<div class="article_contents" id="article_capacity">
 					<label class="article_index" for="capacity">모임 정원</label>
 					<div class="mdl-textfield mdl-js-textfield">
-					<input class="mdl-slider mdl-js-slider" type="range" min="1" max="30" value="5" tabindex="0">
+					<input class="mdl-slider mdl-js-slider" id="rangeInput" type="range" name="meeting_capacity" min="1" max="30" value="5" tabindex="0" oninput="amount.value=rangeInput.value">			
 					</div>
+					<output name="amount" for="rangeInput">5</output>명
 				</div>
 				
 				<div class="article_contents" id="article_detail">
 					<label class="article_index" id="article_detail_index" for="detail">모임 상세</label>
 					<div class="mdl-textfield mdl-js-textfield" id="textarea">
-						<textarea class="mdl-textfield__input" type="text" rows= "10" id="input_detail"></textarea>
+						<textarea class="mdl-textfield__input" type="text" name="meeting_detail" rows= "10" id="input_detail"></textarea>
 						<label class="mdl-textfield__label" for="detail" id="label_detail"></label>
 					</div>
 				</div>
@@ -85,7 +86,8 @@
 					  임시저장
 					</button>
 					
-					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="complete">
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="complete"
+					type="submit">
 					  개설완료
 					</button>
 				</div>

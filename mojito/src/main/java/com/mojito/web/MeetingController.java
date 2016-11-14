@@ -48,10 +48,7 @@ public class MeetingController {
 		String toConvert = day + " " + time;
 		System.out.println(toConvert);
 		System.out.println(LocalDateTimeConverter.converter(toConvert));
-		meeting.setDate(LocalDateTimeConverter.converter(toConvert));
 		meeting.setWriter(sessionUser);
-		meeting.setCapacity(5);
-		meeting.setCreateDate(LocalDateTime.now());
 		System.out.println("meeting: "+meeting);
 		meetingRepository.save(meeting);
 		return "redirect:/meeting/create";
