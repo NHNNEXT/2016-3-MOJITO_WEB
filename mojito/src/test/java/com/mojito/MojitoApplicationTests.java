@@ -1,4 +1,4 @@
-package com.jbee;
+package com.mojito;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
