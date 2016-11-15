@@ -41,19 +41,21 @@ public class MeetingController {
 	}
 	
 	@PostMapping("/{id}/create_article")
-	public String createArticle(@PathVariable Long id, Meeting meeting, HttpSession session, String day, String time){
+	public String createArticle(@PathVariable Long id, Meeting meeting, HttpSession session, String day, String time, String bomb_time){
 		User sessionUser = HttpSessionUtils.getUserFromSession(session);
-		System.out.println("date : " + day);
-		System.out.println("time : " + time);
-		String toConvert = day + " " + time;
-		System.out.println(toConvert);
-		System.out.println(LocalDateTimeConverter.converter(toConvert));
-		meeting.setDate(LocalDateTimeConverter.converter(toConvert));
-		meeting.setWriter(sessionUser);
-		meeting.setCapacity(5);
+		if (!sessionUser.matchId(id)) {
+			throw new IllegalStateException("session user id not match with new article request user id!");
+		}
+		
+		String meeting_time = day + " " + time;
+		String expire_time = day + " " + bomb_time;
+		meeting.setMeetingDate(day, time);
+		meeting.setExpireDate(day, bomb_time);
 		meeting.setCreateDate(LocalDateTime.now());
-		System.out.println("meeting: "+meeting);
+		meeting.setWriter(sessionUser);
+		
+		System.out.println(meeting);
 		meetingRepository.save(meeting);
-		return "redirect:/meeting/create";
+		return "redirect:/";
 	}
 }

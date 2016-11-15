@@ -38,7 +38,7 @@ function onSuccess(data, status) {
 	}
 	
 	if (data.statusCode === 1) {
-		location.href="/main_page";
+		location.href="/";
 	}
 	
 	if (data.statusCode == 2) {
