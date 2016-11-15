@@ -50,6 +50,10 @@ h1{
 #article_detail_index{
 	display: block;
 }
+.article_contents output{
+	display: inline-block;
+}
+
 
 #textarea{
 	width: 400px;

@@ -1,15 +1,21 @@
 package com.mojito.web;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.mojito.domain.User;
 import com.mojito.domain.UserRepository;
+
 
 @Controller
 public class UserController {
@@ -106,4 +112,46 @@ public class UserController {
 
 		return "redirect:/logout";
 	}
+    
+    @GetMapping("cancel/requestToUser/{id}")
+	public String deleteRequestToUser(@PathVariable Long id, HttpSession session) {
+		User sessionedUser = HttpSessionUtils.getUserFromSession(session);
+		User toDeleteRequest = userRepository.findOne(id);
+		sessionedUser.getRequestsToUser().remove(toDeleteRequest);
+		userRepository.save(sessionedUser);
+    	
+    	return "redirect:/friends";
+	}
+    
+    @GetMapping("/confirm/requestToMe/{id}")
+    public String confirmRequestToMe(@PathVariable Long id, HttpSession session) {
+    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
+    	User toConfirmRequest = userRepository.findOne(id);
+    	sessionedUser.getRequestsToMe().remove(toConfirmRequest);
+    	sessionedUser.getFriendUsers().add(toConfirmRequest);
+    	userRepository.save(sessionedUser);
+    	
+    	return "redirect:/friends";
+    }
+    
+    @GetMapping("/deleteFriend/{id}")
+    public String deleteFriend(@PathVariable Long id, HttpSession session) {
+    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
+    	User toDelete = userRepository.findOne(id);
+    	sessionedUser.getFriendUsers().remove(toDelete);
+    	userRepository.save(sessionedUser);
+    	
+    	return "redirect:/friends";
+    }
+    
+    @GetMapping("/requestToMet/{id}")
+    public String requestToMet(@PathVariable Long id, HttpSession session) {
+    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
+    	User requestToMet = userRepository.findOne(id);
+    	sessionedUser.getMetUsers().remove(requestToMet);
+    	sessionedUser.getRequestsToUser().add(requestToMet);
+    	userRepository.save(sessionedUser);
+    	
+    	return "redirect:/friends";
+    }
 }

@@ -49,20 +49,24 @@
 					<div class="mdl-textfield mdl-js-textfield">
 						<input class="mdl-textfield__input" type="text" id="location" name="location">
 						<label class="mdl-textfield__label" for="location"></label>
+						<label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+					      <i class="material-icons">search</i>
+					    </label>
 					</div>
 					<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2"> 
-						<input type="checkbox" id="checkbox-2" class="mdl-checkbox__input"> 
+						<input type="checkbox" id="checkbox-2" class="mdl-checkbox__input" name="meeting_no_location"> 
 						<span class="mdl-checkbox__label">장소 없음/미정</span></label>
 						<iframe width="600" height="450" frameborder="0" style="border: 0"
 								src="https://www.google.com/maps/embed/v1/search?q=Seoul&key=AIzaSyC7FOJMYs0GvlYdn97cqrRQnqS8LynVzJs"
 								allowfullscreen> </iframe>
 				</div>
 				
-				<div class="article_contents" id="capacity">
+				<div class="article_contents" id="article_capacity">
 					<label class="article_index" for="capacity">모임 정원</label>
 					<div class="mdl-textfield mdl-js-textfield">
 					<input class="mdl-slider mdl-js-slider" type="range" min="1" max="30" value="5" tabindex="0" name="capacity">
 					</div>
+					<output name="amount" for="rangeInput">5</output>명
 				</div>
 				
 				<div class="article_contents" id="article_detail">
@@ -82,7 +86,8 @@
 					  임시저장
 					</button>
 					
-					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="complete">
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="complete"
+					type="submit">
 					  개설완료
 					</button>
 				</div>

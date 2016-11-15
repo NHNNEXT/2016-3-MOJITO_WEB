@@ -47,8 +47,6 @@ public class MeetingController {
 			throw new IllegalStateException("session user id not match with new article request user id!");
 		}
 		
-		String meeting_time = day + " " + time;
-		String expire_time = day + " " + bomb_time;
 		meeting.setMeetingDate(day, time);
 		meeting.setExpireDate(day, bomb_time);
 		meeting.setCreateDate(LocalDateTime.now());
