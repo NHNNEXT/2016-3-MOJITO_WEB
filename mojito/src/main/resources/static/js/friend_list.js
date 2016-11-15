@@ -33,7 +33,7 @@ function printRequestedList(data, status) {
         var $requestToUser = $(data.requestedList).html();
         $(data.listBoxName).css('height', 200);
         for (var i in data.list) {
-            var template = $requestToUser.format(data.list[i].userName, data.list[i].userEmail);
+            var template = $requestToUser.format(data.list[i].userName, data.list[i].userEmail, data.list[i].id);
             $(data.listBoxName).css('height', '+=90');
             $list.append(template);
         }
