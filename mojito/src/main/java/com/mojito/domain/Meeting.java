@@ -1,19 +1,22 @@
 package com.mojito.domain;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.text.DateFormat;
-import java.time.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Type;
+
+import com.mojito.web.LocalDateTimeConverter;
 
 
 @Entity
@@ -27,41 +30,83 @@ public class Meeting {
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_answer_writer"))
 	private User writer;
 	
-	public LocalDate meeting_date;
+	public LocalDateTime meeting_date;
 	
-	public LocalTime meeting_time;
-
-	public LocalTime bomb_time;
+	public LocalDateTime expire_date;
 	
-	public String meeting_location;
+	public String location;
 	
-	public int meeting_capacity;
+	public int capacity;
 	
-	public int current_participants;
+	public int current_participants_number = 0;
 	
 	@Lob
-	public String meeting_detail;
+	public String contents;
 	
-	private LocalDateTime createDateTime;
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // 자세히 보기 페이지를 위해 participants 정보가 필요하긴 한데 jackson infinite recursive json serialize를 일으킬 것 같다..... 
+	private Set<User> participants;
+	
+	private LocalDateTime createDate;
 		
 	public Meeting(){}
 	
-	public Meeting(User writer, LocalDate meeting_date, LocalTime meeting_time, LocalTime bomb_time, 
-			String meeting_location, int meeting_capacity, String meeting_detail) {
+	public Meeting(User writer, String location, int capacity, String contents) {
 		this.writer = writer;
-		this.meeting_date = meeting_date;
-		this.meeting_time = meeting_time;
-		this.bomb_time = bomb_time;
-		this.meeting_location = meeting_location;
-		this.meeting_capacity = meeting_capacity;
-		this.meeting_detail = meeting_detail;
-		this.createDateTime = LocalDateTime.now();
+		this.location = location;
+		this.capacity = capacity;
+		this.contents = contents;
+		this.createDate = LocalDateTime.now();
+	}
+	
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+	public String getContents() {
+		return contents;
+	}
+
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 	
 	public void setWriter(User writer) {
 		this.writer = writer;
 	}
 
+	public void setMeetingDate(String day, String time) {
+		this.meeting_date = LocalDateTimeConverter.timeToStringConverter(day + " " + time);
+	}
+	
+	public void setExpireDate(String day, String bomb_time) {
+		this.expire_date = LocalDateTimeConverter.timeToStringConverter(day + " " + bomb_time);
+	}
+	
+	public void joinMeeting(User user) {
+		if (capacity <= current_participants_number) {
+			throw new IllegalStateException("meeting capacity is full");
+		}
+		
+		participants.add(user);
+		current_participants_number++;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -89,13 +134,8 @@ public class Meeting {
 
 	@Override
 	public String toString() {
-		return "Meeting [id=" + id + ", writer=" + writer + ", meeting_date=" + meeting_date + ", meeting_time="
-				+ meeting_time + ", bomb_time=" + bomb_time + ", meeting_location=" + meeting_location
-				+ ", meeting_capacity=" + meeting_capacity + ", current_participants=" + current_participants
-				+ ", meeting_detail=" + meeting_detail + ", createDateTime=" + createDateTime + "]";
+		return "Meeting [id=" + id + ", writer=" + writer + ", meeting_date=" + meeting_date + ", expire_date="
+				+ expire_date + ", location=" + location + ", capacity=" + capacity + ", current_participants="
+				+ current_participants_number + ", contents=" + contents + ", createDate=" + createDate + "]";
 	}
-
-	
-
-	
 }

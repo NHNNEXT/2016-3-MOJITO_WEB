@@ -113,24 +113,45 @@ public class UserController {
 		return "redirect:/logout";
 	}
     
-    @GetMapping("cancelRequest/{id}")
-	public String deleteRequestToUser(@PathVariable Long id, Model model, HttpSession session) {
+    @GetMapping("cancel/requestToUser/{id}")
+	public String deleteRequestToUser(@PathVariable Long id, HttpSession session) {
 		User sessionedUser = HttpSessionUtils.getUserFromSession(session);
-		System.out.println("pathvariable id : " + id);
 		User toDeleteRequest = userRepository.findOne(id);
-		Set testset = sessionedUser.getRequestsToUser();
-		System.out.println("before testset: " + testset);
-		testset.remove(toDeleteRequest);
-		System.out.println("after testset: " + testset);
-//		Iterator<User> it = sessionedUser.getRequestsToUser().iterator();
-//
-//		while(it.hasNext()){
-//			System.out.println(it.next());
-//		}
+		sessionedUser.getRequestsToUser().remove(toDeleteRequest);
 		userRepository.save(sessionedUser);
     	
     	return "redirect:/friends";
 	}
     
+    @GetMapping("/confirm/requestToMe/{id}")
+    public String confirmRequestToMe(@PathVariable Long id, HttpSession session) {
+    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
+    	User toConfirmRequest = userRepository.findOne(id);
+    	sessionedUser.getRequestsToMe().remove(toConfirmRequest);
+    	sessionedUser.getFriendUsers().add(toConfirmRequest);
+    	userRepository.save(sessionedUser);
+    	
+    	return "redirect:/friends";
+    }
     
+    @GetMapping("/deleteFriend/{id}")
+    public String deleteFriend(@PathVariable Long id, HttpSession session) {
+    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
+    	User toDelete = userRepository.findOne(id);
+    	sessionedUser.getFriendUsers().remove(toDelete);
+    	userRepository.save(sessionedUser);
+    	
+    	return "redirect:/friends";
+    }
+    
+    @GetMapping("/requestToMet/{id}")
+    public String requestToMet(@PathVariable Long id, HttpSession session) {
+    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
+    	User requestToMet = userRepository.findOne(id);
+    	sessionedUser.getMetUsers().remove(requestToMet);
+    	sessionedUser.getRequestsToUser().add(requestToMet);
+    	userRepository.save(sessionedUser);
+    	
+    	return "redirect:/friends";
+    }
 }
