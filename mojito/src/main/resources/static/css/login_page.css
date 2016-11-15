@@ -1,16 +1,17 @@
+/* signup_page.css 내용 포함*/
 .social-login {
   margin: 20px auto;
 }
 
 .kakao-login-button {
-  background-color: #FFE552;
+  background-color: #2E6093;
   text-align: center;
   padding: 15px;
   margin: 0 30px;
 }
 
 .kakao-login-button {
-  font-weight: bold;
+  color: #fff;
 }
 
 .kakao-login-button img {
@@ -34,4 +35,12 @@
 
 .find-password-message p {
   color: #2ECC95;
+}
+
+.mdl-color--accent {
+  background: #00C7B3 !important; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(45deg, #00C7B3, #92D953) !important; /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(45deg, #00C7B3, #92D953) !important; /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(45deg, #00C7B3, #92D953) !important; /* For Firefox 3.6 to 15 */
+  background: linear-gradient(45deg, #00C7B3, #92D953) !important; /* Standard syntax */
 }

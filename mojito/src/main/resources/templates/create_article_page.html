@@ -5,56 +5,94 @@
 <head>
 {{> /include/head}}
 <link rel="stylesheet" href="../css/create_article_page.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
 <body>
 	{{> /include/header}}
 	<main class="mdl-layout__content">
 	<div class="page-content view_detail_model">
+	<h1>모임 개설하기</h1>
 		<!-- Main Card -->
-		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-			<div class="container" id="main">
-				<form name="create_meeting" method="post" action="/meeting">
-					<div class="form-group">
-						<label for="date">날짜 선택</label> <input class="form-control"
-							type="date" id="date" name="date" placeholder="모임 날짜">
+		<div class="container" id="main">
+			{{#sessionedUser}}
+			<form name="/create_meeting" method="post"
+				action="/meeting/{{id}}/create_article">
+				{{/sessionedUser}}
+
+				<div class="article_contents" id="article_date_atrea">
+					<label class="article_index" for="date">날짜 선택</label>
+					<div class="mdl-textfield mdl-js-textfield">
+						<input class="mdl-textfield__input" type="date" id="date" name="day">
+						<label class="mdl-textfield__label" for="date"></label>
 					</div>
-					<div class="form-group">
-						<label for="time">시간 선택</label> <input class="form-control"
-							type="time" id="time" name="time" placeholder="모임 시간">
+				</div>
+
+				<div class="article_contents" id="article_time_atrea">
+					<label class="article_index" for="time">시간 선택</label>
+					<div class="mdl-textfield mdl-js-textfield">
+						<input class="mdl-textfield__input" type="time" id="time" name="time">
+						<label class="mdl-textfield__label" for="time"></label>
 					</div>
-					<div class="form-group">
-						<label for="bomb_time">폭파시간 선택</label> <input class="form-control"
-							type="time" id="bomb_time" name="bomb_time" placeholder="폭파 시간">
+				</div>
+
+				<div class="article_contents" id="article_bomb_time_atrea">
+					<label class="article_index" for="bomb_time">폭파시간 선택</label>
+					<div class="mdl-textfield mdl-js-textfield">
+						<input class="mdl-textfield__input" type="time" id="bomb_time" name="bomb_time">
+						<label class="mdl-textfield__label" for="time"></label>
 					</div>
-					<div class="form-group">
-						<label for="location">장소 선택</label> <input type="text"
-							class="form-control" id="location" name="location"
-							placeholder="모임 장소"> <input type="submit" value="검색" />
-						<input type="checkbox" id="placeNone" name="noUseMap"> <label
-							for="placeNone" class="place_none">장소 없음 / 미정</label><br></br>
+				</div>
+
+				<div class="article_contents" id="article_location_atrea">
+					<label class="article_index"for="location">장소 선택</label>
+					<div class="mdl-textfield mdl-js-textfield">
+						<input class="mdl-textfield__input" type="text" id="location" name="location">
+						<label class="mdl-textfield__label" for="location"></label>
+						<label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+					      <i class="material-icons">search</i>
+					    </label>
+					</div>
+					<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2"> 
+						<input type="checkbox" id="checkbox-2" class="mdl-checkbox__input" name="meeting_no_location"> 
+						<span class="mdl-checkbox__label">장소 없음/미정</span></label>
 						<iframe width="600" height="450" frameborder="0" style="border: 0"
-							src="https://www.google.com/maps/embed/v1/search?q=Seoul&key=AIzaSyC7FOJMYs0GvlYdn97cqrRQnqS8LynVzJs"
-							allowfullscreen></iframe>
+								src="https://www.google.com/maps/embed/v1/search?q=Seoul&key=AIzaSyC7FOJMYs0GvlYdn97cqrRQnqS8LynVzJs"
+								allowfullscreen> </iframe>
+				</div>
+				
+				<div class="article_contents" id="article_capacity">
+					<label class="article_index" for="capacity">모임 정원</label>
+					<div class="mdl-textfield mdl-js-textfield">
+					<input class="mdl-slider mdl-js-slider" type="range" min="1" max="30" value="5" tabindex="0" name="capacity">
 					</div>
+					<output name="amount" for="rangeInput">5</output>명
+				</div>
+				
+				<div class="article_contents" id="article_detail">
+					<label class="article_index" id="article_detail_index" for="detail">모임 상세</label>
+					<div class="mdl-textfield mdl-js-textfield" id="textarea">
+						<textarea class="mdl-textfield__input" type="text" rows= "10" id="input_detail" name="contents"></textarea>
+						<label class="mdl-textfield__label" for="detail" id="label_detail"></label>
+					</div>
+				</div>
+				
+				<div class="buttonArea">
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="pre_view">
+					  미리보기
+					</button>
+					
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="temporary_save">
+					  임시저장
+					</button>
+					
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="complete"
+					type="submit">
+					  개설완료
+					</button>
+				</div>
 
-					<div class="form-group">
-						<label for="capacity">모임 정원</label> <input type="range" min="1"
-							max="30" class="form-control" id="capacity" name="capacity">
-					</div>
-					<div class="form-group">
-						<label for="contents">내용</label> <input type="text"
-							class="form-control" id="contents" name="contents"
-							placeholder="모임 내용">
-					</div>
-					<div class="buttonArea">
-						<button type="button" class="normalBtn previewBtn">미리보기</button>
-						<button type="button" class="normalBtn draftBtn">임시저장</button>
-						<input type="submit" class="create_meeting" value="개설완료" />
-					</div>
-
-				</form>
-			</div>
+			</form>
 		</div>
 	</div>
 
@@ -62,8 +100,10 @@
 	</div>
 	</main>
 	</div>
-	{{> /include/footer}}
-
+	<script
+		src="http://maps.google.co.kr/maps?file=api&amp;v=2&amp;key=AIzaSyC7FOJMYs0GvlYdn97cqrRQnqS8LynVzJs"
+		type="text/javascript"></script>
+	<script src="/js/maps.js"></script>
 	<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
 	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 </body>

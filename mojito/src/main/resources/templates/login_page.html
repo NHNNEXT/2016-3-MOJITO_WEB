@@ -2,19 +2,18 @@
 <html lang="en">
 <head>
 {{> /include/head}}
+<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 </head>
 
 <body>
 {{> /include/header}}
-
   <main class="mdl-layout__content">
-    <div class="page-content sign_card_model">
+    <div class="sign_card_model">
       <!-- Main Card -->
       <div class="demo-card-wide mdl-card mdl-shadow--2dp">
         <div class="mdl-card__title">
         </div>
-        <form id="loginForm" method="post" action="/login">
-
+        <form id="loginForm" method="post" action="/api/user/login">
           <div class="mdl-card__supporting-text">
             <div class="signup_email_label">이메일</div>
             <div class="mdl-textfield mdl-js-textfield">
@@ -28,17 +27,17 @@
             </div>
           </div>
           <div class="password-find-tag">
-          	<a href="#"><p>비밀번호를 잊어버리셨나요?</p></a>
+          	<a href="/find"><p>비밀번호를 잊어버리셨나요?</p></a>
           </div>
           <div class="social-login">
             <a href="#" style="color: #000; text-decoration: none;">
             <div class="kakao-login-button">
-              <span><img src="../image/kakao_login_logo.png"></span>카카오 계정으로 로그인
+              페이스북 계정으로 로그인
             </div>
             </a>
           </div>
           <div class="mdl-card__actions mdl-card--border">
-            <a href="#" onclick="document.getElementById('loginForm').submit()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect submit-button">
+            <a href="#" id="loginButton" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect submit-button">
               로그인
             </a>
             <a href="./" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect cancel-button">
@@ -48,10 +47,14 @@
         </form>
       </div>
     </div>
+	<div id="login_status_snackbar" class="mdl-js-snackbar mdl-snackbar mdl-color--accent">
+		<div class="mdl-snackbar__text"></div>
+		<button class="mdl-snackbar__action" type="button"></button>
+	</div>
   </main>
-</div>
 
 <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
 <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+<script src="/js/login.js"></script>
 </body>
 </html>

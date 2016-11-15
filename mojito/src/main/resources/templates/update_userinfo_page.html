@@ -11,23 +11,24 @@
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
       <div class="mdl-card__title">
       </div>
-      <form action="#">
+      {{#sessionedUser}}
+      <form id="userEditForm" action="/{{id}}/update" method="post">
         <div class="mdl-card__supporting-text">
-
+			
           <div class="signup_label">이름</div>
           <div class="mdl-textfield mdl-js-textfield">
-            <label class="mdl-textfield__label" for="userName">Name</label>
-            <input class="mdl-textfield__input" type="text" id="userName" name="userName">
+            <label class="mdl-textfield__label" for="userName"></label>
+            <input class="mdl-textfield__input" type="text" id="userName" name="userName" value="{{userName}}">
           </div>
           <div class="signup_label">비밀번호</div>
           <div class="mdl-textfield mdl-js-textfield">
-            <label class="mdl-textfield__label" for="userPassword">Password</label>
-            <input class="mdl-textfield__input" type="password" id="userPassword" name="userPassword">
+            <label class="mdl-textfield__label" for="userPassword">password</label>
+            <input class="mdl-textfield__input" type="password" id="userPassword" name="userPassword" >
           </div>
           <div class="signup_label">비밀번호확인</div>
           <div class="mdl-textfield mdl-js-textfield">
-            <label class="mdl-textfield__label" for="userPassword2">Password Confirm</label>
-            <input class="mdl-textfield__input" type="password" id="userPassword2" name="userPassword">
+            <label class="mdl-textfield__label" for="userPasswordConfirm">password confirm</label>
+            <input class="mdl-textfield__input" type="password" id="userPasswordConfirm" name="userPasswordConfirm">
           </div>
 
         </div>
@@ -41,17 +42,17 @@
         </div>
 
         <div class="mdl-card__actions mdl-card--border">
-          <a href="/login"
+          <a href="#" onclick="document.getElementById('userEditForm').submit();"
              class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect submit-button">
             완료
           </a>
-          <a href="../"
+          <a href="/"
              class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect cancel-button">
             취소
           </a>
         </div>
       </form>
-
+	  {{/sessionedUser}}		
     </div>
   </div>
 </main>
