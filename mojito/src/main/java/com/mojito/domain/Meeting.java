@@ -2,6 +2,7 @@ package com.mojito.domain;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.text.DateFormat;
 import java.time.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -26,11 +27,11 @@ public class Meeting {
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_answer_writer"))
 	private User writer;
 	
-	public String meeting_date;
+	public LocalDate meeting_date;
 	
-	public String meeting_time;
+	public LocalTime meeting_time;
 
-	public String bomb_time;
+	public LocalTime bomb_time;
 	
 	public String meeting_location;
 	
@@ -42,10 +43,10 @@ public class Meeting {
 	public String meeting_detail;
 	
 	private LocalDateTime createDateTime;
-	
+		
 	public Meeting(){}
 	
-	public Meeting(User writer, String meeting_date, String meeting_time, String bomb_time, 
+	public Meeting(User writer, LocalDate meeting_date, LocalTime meeting_time, LocalTime bomb_time, 
 			String meeting_location, int meeting_capacity, String meeting_detail) {
 		this.writer = writer;
 		this.meeting_date = meeting_date;

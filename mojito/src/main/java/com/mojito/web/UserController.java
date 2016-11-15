@@ -1,15 +1,21 @@
 package com.mojito.web;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.mojito.domain.User;
 import com.mojito.domain.UserRepository;
+
 
 @Controller
 public class UserController {
@@ -106,4 +112,25 @@ public class UserController {
 
 		return "redirect:/logout";
 	}
+    
+    @GetMapping("cancelRequest/{id}")
+	public String deleteRequestToUser(@PathVariable Long id, Model model, HttpSession session) {
+		User sessionedUser = HttpSessionUtils.getUserFromSession(session);
+		System.out.println("pathvariable id : " + id);
+		User toDeleteRequest = userRepository.findOne(id);
+		Set testset = sessionedUser.getRequestsToUser();
+		System.out.println("before testset: " + testset);
+		testset.remove(toDeleteRequest);
+		System.out.println("after testset: " + testset);
+//		Iterator<User> it = sessionedUser.getRequestsToUser().iterator();
+//
+//		while(it.hasNext()){
+//			System.out.println(it.next());
+//		}
+		userRepository.save(sessionedUser);
+    	
+    	return "redirect:/friends";
+	}
+    
+    
 }
