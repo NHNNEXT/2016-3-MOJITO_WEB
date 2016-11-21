@@ -1,14 +1,12 @@
 package com.mojito.web;
 
-import java.util.Iterator;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +17,21 @@ import com.mojito.domain.UserRepository;
 
 @Controller
 public class UserController {
+	private Map<UserRequestType, UserOperations> operations = new HashMap<UserRequestType, UserOperations>(){{
+		put(UserRequestType.CONFIRM_REQUEST_USER, (User sessionedUser, User requestUser) 
+				-> sessionedUser.getFriendUsers().remove(requestUser));
+		put(UserRequestType.DELETE_FRIEND, new DeleteFriend());
+	}};
+	
+    @GetMapping("cancel/requestToUser/{id}/{type}")
+	public String deleteRequestToUser(@PathVariable Long id, @PathVariable UserRequestType type, HttpSession session) {
+    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
+    	User requestUser = userRepository.findOne(id);
+    	UserOperations userOperations = operations.get(type);
+    	userOperations.process(sessionedUser, requestUser);
+    	userRepository.save(sessionedUser);
+    	return "redirect:/friends";
+    }
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -115,43 +128,48 @@ public class UserController {
     
     @GetMapping("cancel/requestToUser/{id}")
 	public String deleteRequestToUser(@PathVariable Long id, HttpSession session) {
+    	return processRequest(id, session, (User sessionedUser, User requestUser) -> {
+				sessionedUser.getRequestsToUser().remove(requestUser);
+			});
+    }
+
+	private String processRequest(Long id, HttpSession session, UserOperations userOperations) {
 		User sessionedUser = HttpSessionUtils.getUserFromSession(session);
-		User toDeleteRequest = userRepository.findOne(id);
-		sessionedUser.getRequestsToUser().remove(toDeleteRequest);
-		userRepository.save(sessionedUser);
-    	
+    	User requestUser = userRepository.findOne(id);
+    	userOperations.process(sessionedUser, requestUser);
+    	userRepository.save(sessionedUser);
     	return "redirect:/friends";
 	}
-    
+	
     @GetMapping("/confirm/requestToMe/{id}")
     public String confirmRequestToMe(@PathVariable Long id, HttpSession session) {
-    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
-    	User toConfirmRequest = userRepository.findOne(id);
-    	sessionedUser.getRequestsToMe().remove(toConfirmRequest);
-    	sessionedUser.getFriendUsers().add(toConfirmRequest);
-    	userRepository.save(sessionedUser);
-    	
-    	return "redirect:/friends";
+    	return processRequest(id, session, new UserOperations() {
+			@Override
+			public void process(User sessionedUser, User requestUser) {
+				sessionedUser.getRequestsToMe().remove(requestUser);
+		    	sessionedUser.getFriendUsers().add(requestUser);
+			}
+		});
     }
     
     @GetMapping("/deleteFriend/{id}")
     public String deleteFriend(@PathVariable Long id, HttpSession session) {
-    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
-    	User toDelete = userRepository.findOne(id);
-    	sessionedUser.getFriendUsers().remove(toDelete);
-    	userRepository.save(sessionedUser);
-    	
-    	return "redirect:/friends";
+    	return processRequest(id, session, new UserOperations() {
+			@Override
+			public void process(User sessionedUser, User requestUser) {
+				sessionedUser.getFriendUsers().remove(requestUser);
+			}
+		});
     }
     
     @GetMapping("/requestToMet/{id}")
     public String requestToMet(@PathVariable Long id, HttpSession session) {
-    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
-    	User requestToMet = userRepository.findOne(id);
-    	sessionedUser.getMetUsers().remove(requestToMet);
-    	sessionedUser.getRequestsToUser().add(requestToMet);
-    	userRepository.save(sessionedUser);
-    	
-    	return "redirect:/friends";
+    	return processRequest(id, session, new UserOperations() {
+			@Override
+			public void process(User sessionedUser, User requestUser) {
+				sessionedUser.getMetUsers().remove(requestUser);
+		    	sessionedUser.getRequestsToUser().add(requestUser);
+			}
+		});
     }
 }
