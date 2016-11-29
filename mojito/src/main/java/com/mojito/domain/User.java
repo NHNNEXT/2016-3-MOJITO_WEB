@@ -32,21 +32,34 @@ public class User {
     @JsonProperty
     private String userName;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<User> friendUsers;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<User> requestsToUser;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<User> requestsToMe;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<User> metUsers;
+    
+    public User() {
+    	
+    }
+    
+	public User(String userEmail, String userPassword, String userName) {
+		super();
+		this.userEmail = userEmail;
+		this.userPassword = userPassword;
+		this.userName = userName;
+	}
+
+
 
 	public String getUserEmail() {
 		return userEmail;
@@ -89,14 +102,30 @@ public class User {
 		if (newUser.userPassword == null) {
 			return false;
 		}
-		return newUser.userPassword.equals(userPassword);
+		return matchPassword(userPassword, newUser.userPassword);
 	}
+	
+	private boolean matchPassword(String originPassword, String confirmPassword) {
+		if (originPassword == null) {
+			return false;
+		}
+		
+		return originPassword.equals(confirmPassword);
+	}
+	
 
 	public boolean matchId(Long newId) {
 		if (newId == null) {
 			return false;
 		}
 		return newId.equals(id);
+	}
+	
+	public void update(User updatedUser, String userPasswordConfirm) {
+		this.userName = updatedUser.userName;
+		if (matchPassword(updatedUser.userPassword, userPasswordConfirm)) {
+			this.userPassword = updatedUser.userPassword;
+		}
 	}
 
 	@Override
@@ -124,10 +153,15 @@ public class User {
 		return true;
 	}
 
-	public void update(User updatedUser, String userPasswordConfirm) {
-		this.userName = updatedUser.userName;
-		if (updatedUser.userPassword.equals(userPasswordConfirm)) {
-			this.userPassword = updatedUser.userPassword;
-		}
+	public String getUserName() {
+		return userName;
+	}
+	
+	public String getUserPassword() {
+		return userPassword;
+	}
+
+	public Long getId() {
+		return id;
 	}
 }

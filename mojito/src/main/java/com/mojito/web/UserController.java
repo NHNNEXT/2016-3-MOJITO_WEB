@@ -126,50 +126,45 @@ public class UserController {
 		return "redirect:/logout";
 	}
     
-    @GetMapping("cancel/requestToUser/{id}")
-	public String deleteRequestToUser(@PathVariable Long id, HttpSession session) {
-    	return processRequest(id, session, (User sessionedUser, User requestUser) -> {
-				sessionedUser.getRequestsToUser().remove(requestUser);
-			});
-    }
-
-	private String processRequest(Long id, HttpSession session, UserOperations userOperations) {
-		User sessionedUser = HttpSessionUtils.getUserFromSession(session);
+    private String processRequest(Long id, HttpSession session, UserOperations userOperations) {
+    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
     	User requestUser = userRepository.findOne(id);
     	userOperations.process(sessionedUser, requestUser);
     	userRepository.save(sessionedUser);
     	return "redirect:/friends";
-	}
+    }
+    
+    @GetMapping("cancel/requestToUser/{id}")
+	public String deleteRequestToUser(@PathVariable Long id, HttpSession session) {
+    	return processRequest(id, session, (User sessionedUser, User requestUser) -> {
+    			sessionedUser = userRepository.findOne(sessionedUser.getId());
+				sessionedUser.getRequestsToUser().remove(requestUser);
+			});
+    }
 	
     @GetMapping("/confirm/requestToMe/{id}")
     public String confirmRequestToMe(@PathVariable Long id, HttpSession session) {
-    	return processRequest(id, session, new UserOperations() {
-			@Override
-			public void process(User sessionedUser, User requestUser) {
-				sessionedUser.getRequestsToMe().remove(requestUser);
-		    	sessionedUser.getFriendUsers().add(requestUser);
-			}
+    	return processRequest(id, session, (User sessionedUser, User requestUser) -> {
+			sessionedUser = userRepository.findOne(sessionedUser.getId());
+			sessionedUser.getRequestsToMe().remove(requestUser);
+			sessionedUser.getFriendUsers().add(requestUser);
 		});
     }
     
     @GetMapping("/deleteFriend/{id}")
     public String deleteFriend(@PathVariable Long id, HttpSession session) {
-    	return processRequest(id, session, new UserOperations() {
-			@Override
-			public void process(User sessionedUser, User requestUser) {
-				sessionedUser.getFriendUsers().remove(requestUser);
-			}
+    	return processRequest(id, session, (User sessionedUser, User requestUser) -> {
+			sessionedUser = userRepository.findOne(sessionedUser.getId());
+			sessionedUser.getFriendUsers().remove(requestUser);
 		});
     }
     
     @GetMapping("/requestToMet/{id}")
     public String requestToMet(@PathVariable Long id, HttpSession session) {
-    	return processRequest(id, session, new UserOperations() {
-			@Override
-			public void process(User sessionedUser, User requestUser) {
-				sessionedUser.getMetUsers().remove(requestUser);
-		    	sessionedUser.getRequestsToUser().add(requestUser);
-			}
+    	return processRequest(id, session, (User sessionedUser, User requestUser) -> {
+			sessionedUser = userRepository.findOne(sessionedUser.getId());
+			sessionedUser.getMetUsers().remove(requestUser);
+			sessionedUser.getRequestsToUser().add(requestUser);
 		});
     }
 }

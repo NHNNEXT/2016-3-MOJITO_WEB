@@ -51,7 +51,8 @@ public class ApiUserController {
     	if (!HttpSessionUtils.isLoginUser(session)) {
     		throw new IllegalStateException("Not Login");
     	}
-    	User user = HttpSessionUtils.getUserFromSession(session);
+    	
+    	User user = userRepository.findByUserEmail(HttpSessionUtils.getUserFromSession(session).getUserEmail());
     	
     	if (listId == 1) {
     		System.out.println(user.getRequestsToUser());
