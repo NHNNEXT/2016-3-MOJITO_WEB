@@ -43,7 +43,7 @@ public class Meeting {
 	@Lob
 	public String contents;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // 자세히 보기 페이지를 위해 participants 정보가 필요하긴 한데 jackson infinite recursive json serialize를 일으킬 것 같다..... 
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // 자세히 보기 페이지를 위해 participants 정보가 필요하긴 한데 jackson infinite recursive json serialize를 일으킬 것 같다..... 
 	private Set<User> participants;
 	
 	private LocalDateTime createDate;
