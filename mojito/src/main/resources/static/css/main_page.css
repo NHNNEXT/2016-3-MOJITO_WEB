@@ -94,3 +94,7 @@ main {
 .join_button {
 	left: 550px;
 }
+
+.join_button.blue {
+	background-color: blue;
+}

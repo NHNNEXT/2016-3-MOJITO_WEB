@@ -98,13 +98,23 @@ public class Meeting {
 		this.expire_date = LocalDateTimeConverter.timeToStringConverter(day + " " + bomb_time);
 	}
 	
+	public Set<User> getParticipants() {
+		return participants;
+	}
+	
 	public void joinMeeting(User user) {
 		if (capacity <= current_participants_number) {
 			throw new IllegalStateException("meeting capacity is full");
 		}
 		
-		participants.add(user);
-		current_participants_number++;
+		if (participants.contains(user)) {
+			participants.remove(user);
+			current_participants_number--;
+		} else {
+			participants.add(user);
+			current_participants_number++;
+		}
+		
 	}
 	
 	@Override

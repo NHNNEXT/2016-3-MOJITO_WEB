@@ -32,22 +32,26 @@ public class User {
     @JsonProperty
     private String userName;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<User> friendUsers;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<User> requestsToUser;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<User> requestsToMe;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<User> metUsers;
 
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Meeting> myMeetings;
+    
 	public String getUserEmail() {
 		return userEmail;
 	}
@@ -78,6 +82,10 @@ public class User {
 	
 	public Set<User> getMetUsers() {
 		return metUsers;
+	}
+	
+	public Set<Meeting> getMyMeetings() {
+		return myMeetings;
 	}
 	
     @Override
@@ -129,5 +137,9 @@ public class User {
 		if (updatedUser.userPassword.equals(userPasswordConfirm)) {
 			this.userPassword = updatedUser.userPassword;
 		}
+	}
+
+	public Long getId() {
+		return id;
 	}
 }
