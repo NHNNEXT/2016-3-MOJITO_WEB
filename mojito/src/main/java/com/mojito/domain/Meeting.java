@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Type;
 
+import com.mojito.utils.DateTimeUtils;
 import com.mojito.web.LocalDateTimeConverter;
 
 
@@ -96,8 +97,7 @@ public class Meeting {
 	}
 	
 	public String getFormattedMeetingDate() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		return meetingDate.format(formatter);
+		return DateTimeUtils.formatDate(meetingDate);
 	}
 	
 	public void setExpireDate(String day, String bomb_time) {
@@ -105,8 +105,7 @@ public class Meeting {
 	}
 	
 	public String getFormattedExpireDate() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		return expireDate.format(formatter);
+		return DateTimeUtils.formatDate(expireDate);
 	}
 	
 	public Set<User> getParticipants() {
