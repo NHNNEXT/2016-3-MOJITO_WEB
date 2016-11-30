@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mojito.utils.FileUploadUtils;
 
 @Entity
 public class User {
@@ -33,7 +34,8 @@ public class User {
     private String userName;
 	
 	@Column(nullable = true)
-	private String profileImagePath;
+	@JsonProperty
+	private String profileImageName;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
@@ -51,10 +53,6 @@ public class User {
     @JsonIgnore
     private Set<User> metUsers;
 
-//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JsonIgnore
-//    private Set<Meeting> myMeetings;
-    
 	public String getUserEmail() {
 		return userEmail;
 	}
@@ -69,6 +67,10 @@ public class User {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	
+	public void setProfileImageName(String profileImagePath) {
+		this.profileImageName = profileImagePath;
 	}
 	
 	public Set<User> getFriendUsers() {
@@ -87,9 +89,9 @@ public class User {
 		return metUsers;
 	}
 	
-//	public Set<Meeting> getMyMeetings() {
-//		return myMeetings;
-//	}
+	public String getProfileImageName() {
+		return profileImageName;
+	}
 	
     @Override
 	public String toString() {

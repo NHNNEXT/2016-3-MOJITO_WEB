@@ -98,15 +98,11 @@ public class UserController {
 			throw new IllegalStateException("You can't change other user's information.");
 		}
 
-		System.out.println("edit user : " + updatedUser);
-		System.out.println("new password confirm : " + userPasswordConfirm);
-		System.out.println("userProfileImage : " + userProfileImage);
-		
 		String filePath = FileUploadUtils.fileUpload(userProfileImage);
-		System.out.println("filePath is... " + filePath);
 		User dbUser = userRepository.findOne(id);
 		System.out.println("user : " + updatedUser);
 		dbUser.update(updatedUser, userPasswordConfirm);
+		dbUser.setProfileImageName(filePath);
 		userRepository.save(dbUser);
 
 		return "redirect:/logout";
