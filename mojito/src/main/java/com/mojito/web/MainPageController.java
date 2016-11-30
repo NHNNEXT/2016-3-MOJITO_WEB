@@ -11,24 +11,36 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.mojito.domain.Meeting;
 import com.mojito.domain.MeetingRepository;
+import com.mojito.domain.User;
+import com.mojito.domain.UserRepository;
 
 @Controller
 public class MainPageController {
 	@Autowired
 	private MeetingRepository meetingRepository;
+	@Autowired
+	private UserRepository userRepository;
 	
 	@GetMapping("/")
 	public String mainPage(HttpSession session, Model model){
-		
-		if (session.getAttribute(HttpSessionUtils.USER_SESSION_KEY)==null) {
+		User sessionedUser = (User)session.getAttribute(HttpSessionUtils.USER_SESSION_KEY);
+		if (sessionedUser==null) {
 			return "login_page";
 		}
-		model.addAttribute("meetings", meetingRepository.findAll()); 
+		sessionedUser = userRepository.findOne(sessionedUser.getId()); // lazy initialization
 		
-		List<Meeting> meetingList;
-//		User sessionedUser = 
+		List<Meeting> meetingList = null;
+		for (User user : sessionedUser.getFriendUsers()) {
+			for (Meeting meeting : user.getMyMeetings()) {
+				meetingList.add(meeting);
+			}
+		}
+	
+		for (Meeting meeting : sessionedUser.getMyMeetings()) {
+			meetingList.add(meeting);
+		}
 		
-		model.addAttribute("meetings", meetingRepository.findAll()); 
+		model.addAttribute("meetings", meetingList); 
 		
 		return "main_page";
 	}
