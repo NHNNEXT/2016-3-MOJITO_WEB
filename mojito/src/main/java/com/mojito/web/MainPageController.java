@@ -28,19 +28,19 @@ public class MainPageController {
 		if (sessionedUser==null) {
 			return "login_page";
 		}
-		sessionedUser = userRepository.findOne(sessionedUser.getId()); // lazy initialization
+		User loginUser = userRepository.findOne(sessionedUser.getId()); // lazy initialization
 		
 		List<Meeting> meetingList = new ArrayList<>();
-		for (User user : sessionedUser.getFriendUsers()) {
-			meetingList.add(meetingRepository.findByWriter(user));
+		for (User user : loginUser.getFriendUsers()) {
+			for (Meeting m : meetingRepository.findByWriter(user)) {
+				meetingList.add(m);
+			}
 		}
-	
-//		meetingList.add(meetingRepository.findByWriter(sessionedUser));
-		
+		for (Meeting m : meetingRepository.findByWriter(loginUser)) {
+			meetingList.add(m);
+		}
 		model.addAttribute("meetings", meetingList); 
 		
-		System.out.println("Meeting List : " + meetingList);
-//		model.addAttribute("meetings", meetingRepository.findAll());
 		return "main_page";
 	}
 }
