@@ -104,6 +104,11 @@ public class Meeting {
 		this.expireDate = LocalDateTimeConverter.timeToStringConverter(day + " " + bomb_time);
 	}
 	
+	public String getFormattedExpireDate() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		return expireDate.format(formatter);
+	}
+	
 	public Set<User> getParticipants() {
 		return participants;
 	}
