@@ -48,9 +48,9 @@ public class User {
     @JsonIgnore
     private Set<User> metUsers;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<Meeting> myMeetings;
+//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JsonIgnore
+//    private Set<Meeting> myMeetings;
     
 	public String getUserEmail() {
 		return userEmail;
@@ -84,9 +84,9 @@ public class User {
 		return metUsers;
 	}
 	
-	public Set<Meeting> getMyMeetings() {
-		return myMeetings;
-	}
+//	public Set<Meeting> getMyMeetings() {
+//		return myMeetings;
+//	}
 	
     @Override
 	public String toString() {

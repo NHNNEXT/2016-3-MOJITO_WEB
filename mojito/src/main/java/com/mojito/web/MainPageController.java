@@ -1,5 +1,6 @@
 package com.mojito.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -29,19 +30,16 @@ public class MainPageController {
 		}
 		sessionedUser = userRepository.findOne(sessionedUser.getId()); // lazy initialization
 		
-		List<Meeting> meetingList = null;
-		for (User user : sessionedUser.getFriendUsers()) {
-			for (Meeting meeting : user.getMyMeetings()) {
-				meetingList.add(meeting);
-			}
-		}
-	
-		for (Meeting meeting : sessionedUser.getMyMeetings()) {
-			meetingList.add(meeting);
-		}
+//		List<Meeting> meetingList = new ArrayList<>();
+//		for (User user : sessionedUser.getFriendUsers()) {
+//			meetingList.add(meetingRepository.findByWriter(user));
+//		}
+//	
+//		meetingList.add(meetingRepository.findByWriter(sessionedUser));
+//		
+//		model.addAttribute("meetings", meetingList); 
 		
-		model.addAttribute("meetings", meetingList); 
-		
+		model.addAttribute("meetings", meetingRepository.findAll());
 		return "main_page";
 	}
 }
