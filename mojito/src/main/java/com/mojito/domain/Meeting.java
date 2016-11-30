@@ -114,7 +114,6 @@ public class Meeting {
 			participants.add(user);
 			current_participants_number++;
 		}
-		
 	}
 	
 	@Override

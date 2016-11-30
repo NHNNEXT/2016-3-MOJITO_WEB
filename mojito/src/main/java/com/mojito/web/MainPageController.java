@@ -23,6 +23,7 @@ public class MainPageController {
 		if (session.getAttribute(HttpSessionUtils.USER_SESSION_KEY)==null) {
 			return "login_page";
 		}
+		model.addAttribute("meetings", meetingRepository.findAll()); 
 		
 		List<Meeting> meetingList;
 //		User sessionedUser = 
