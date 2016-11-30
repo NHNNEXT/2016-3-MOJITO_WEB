@@ -30,16 +30,17 @@ public class MainPageController {
 		}
 		sessionedUser = userRepository.findOne(sessionedUser.getId()); // lazy initialization
 		
-//		List<Meeting> meetingList = new ArrayList<>();
-//		for (User user : sessionedUser.getFriendUsers()) {
-//			meetingList.add(meetingRepository.findByWriter(user));
-//		}
-//	
+		List<Meeting> meetingList = new ArrayList<>();
+		for (User user : sessionedUser.getFriendUsers()) {
+			meetingList.add(meetingRepository.findByWriter(user));
+		}
+	
 //		meetingList.add(meetingRepository.findByWriter(sessionedUser));
-//		
-//		model.addAttribute("meetings", meetingList); 
 		
-		model.addAttribute("meetings", meetingRepository.findAll());
+		model.addAttribute("meetings", meetingList); 
+		
+		System.out.println("Meeting List : " + meetingList);
+//		model.addAttribute("meetings", meetingRepository.findAll());
 		return "main_page";
 	}
 }

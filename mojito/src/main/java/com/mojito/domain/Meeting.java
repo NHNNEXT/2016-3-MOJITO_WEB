@@ -20,38 +20,47 @@ import org.hibernate.annotations.Type;
 import com.mojito.utils.DateTimeUtils;
 import com.mojito.web.LocalDateTimeConverter;
 
-
 @Entity
 public class Meeting {
-	
+
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_answer_writer"))
 	private User writer;
-	
+
 	public LocalDateTime meetingDate;
-	
+
 	public LocalDateTime expireDate;
-	
+
 	public String location;
-	
+
 	public int capacity;
-	
-	public int curParticipantNum = 0;
-	
+
 	@Lob
 	public String contents;
-	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // 자세히 보기 페이지를 위해 participants 정보가 필요하긴 한데 jackson infinite recursive json serialize를 일으킬 것 같다..... 
+
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // 자세히 보기
+																	// 페이지를 위해
+																	// participants
+																	// 정보가 필요하긴
+																	// 한데
+																	// jackson
+																	// infinite
+																	// recursive
+																	// json
+																	// serialize를
+																	// 일으킬 것
+																	// 같다.....
 	private Set<User> participants;
-	
+
 	private LocalDateTime createDate;
-		
-	public Meeting(){}
-	
+
+	public Meeting() {
+	}
+
 	public Meeting(User writer, String location, int capacity, String contents) {
 		this.writer = writer;
 		this.location = location;
@@ -59,7 +68,7 @@ public class Meeting {
 		this.contents = contents;
 		this.createDate = LocalDateTime.now();
 	}
-	
+
 	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
 	}
@@ -87,7 +96,7 @@ public class Meeting {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	
+
 	public void setWriter(User writer) {
 		this.writer = writer;
 	}
@@ -95,37 +104,38 @@ public class Meeting {
 	public void setMeetingDate(String day, String time) {
 		this.meetingDate = LocalDateTimeConverter.timeToStringConverter(day + " " + time);
 	}
-	
+
 	public String getFormattedMeetingDate() {
 		return DateTimeUtils.formatDate(meetingDate);
 	}
-	
+
 	public void setExpireDate(String day, String bomb_time) {
 		this.expireDate = LocalDateTimeConverter.timeToStringConverter(day + " " + bomb_time);
 	}
-	
+
 	public String getFormattedExpireDate() {
 		return DateTimeUtils.formatDate(expireDate);
 	}
-	
+
 	public Set<User> getParticipants() {
 		return participants;
 	}
 	
-	public void joinMeeting(User user) {
-		if (capacity <= curParticipantNum) {
+	public int getParticipantSize() {
+		return participants.size();
+	}
+
+	public void join(User user) {
+		if (capacity <= participants.size()) {
 			throw new IllegalStateException("meeting capacity is full");
 		}
-		
-		if (participants.contains(user)) {
-			participants.remove(user);
-			curParticipantNum--;
-		} else {
-			participants.add(user);
-			curParticipantNum++;
-		}
+		participants.add(user);
 	}
-	
+
+	public void cancel(User user) {
+		participants.remove(user);
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -154,7 +164,6 @@ public class Meeting {
 	@Override
 	public String toString() {
 		return "Meeting [id=" + id + ", writer=" + writer + ", meeting_date=" + meetingDate + ", expire_date="
-				+ expireDate + ", location=" + location + ", capacity=" + capacity + ", current_participants="
-				+ curParticipantNum + ", contents=" + contents + ", createDate=" + createDate + "]";
+				+ expireDate + ", location=" + location + ", capacity=" + capacity + ", contents=" + contents + ", createDate=" + createDate + "]";
 	}
 }

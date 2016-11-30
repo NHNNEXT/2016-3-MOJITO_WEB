@@ -29,7 +29,7 @@
 						<i class="fa fa-map-marker"></i> <span class="event_place_text">{{location}}</span>
 					</div>
 					<div class="participants">
-						<i class="fa fa-user"></i> <span class="current_participants">{{curParticipantNum}}</span>
+						<i class="fa fa-user"></i> <span class="current_participants">{{participantSize}}</span>
 						<span>/</span> <span class="overall_participants">{{capacity}}</span>
 					</div>
 				</div>
@@ -38,8 +38,8 @@
 					class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent detail_button">자세히
 					보기</button>
 				<button
-					class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent join_button"
-					url="/api/meeting/join/{{id}}">조인</button>
+					class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent join_button" url="/api/meeting/join/{{id}}">
+					조인</button>
 			</div>
 		</li>
     {{/meetings}}
