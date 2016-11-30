@@ -1,44 +1,67 @@
 @CHARSET "UTF-8";
-#show_my_meeting {
-  margin: 20px;
-  display: block;
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+.container{
+	margin-top : 20px;
+	margin-left : 100px;
+	margin-right : 100px;
+	margin-bottom: 100px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #DDD;
 }
 
-.meeting_category {
-  margin: 20px;
+.container h1{
+	font-family:'Jeju Gothic', sans-serif;
+	margin-top : 20px;
+	margin-left : 50px;
+	margin-right : 50px;
+	margin-bottom: 50px;
 }
 
-.create_meeting_subject {
-  margin-bottom: 0px;
-  margin-left: 50px;
+.container .sorting_index{
+	display: block;
+	text-align: right;
+	margin-right: 50px;
 }
 
-.friend_picture {
-  display: inline;
+.container .sorting_index a{
+	text-decoration: none;
 }
 
-.meeting_information {
-  padding-bottom: 25px;
-  padding-top: 15px;
-  background-color: #EEE;
-  display: inline;
-  border-collapse: collapse;
+.demo-card-event.mdl-card {
+	width:auto;
+	height: 256px;
+	background: #3E4EB8;
+	margin-top : 20px;
+	margin-left : 50px;
+	margin-right : 50px;
+	margin-bottom: 50px;
 }
 
-.meeting_information td {
-  padding-left: 30px;
-  padding-right: 30px;
+.demo-card-event>.mdl-card__actions {
+	border-color: rgba(255, 255, 255, 0.2);
 }
 
-.meeting_detail {
-  margin-top: 10px;
-  padding-left: 70px;
-  line-height: 110%;
+.demo-card-event>.mdl-card__title {
+	align-items: flex-start;
 }
 
-.meeting_hash_tag {
-  font-size: 8px;
-  margin-top: 10px;
-  line-height: 0%;
-  padding-left: 70px;
+.demo-card-event>.mdl-card__title>h4 {
+	margin-top: 0;
+}
+
+.demo-card-event>.mdl-card__actions {
+	display: flex;
+	box-sizing: border-box;
+	align-items: center;
+}
+
+.demo-card-event>.mdl-card__actions>.material-icons {
+	padding-right: 10px;
+}
+
+.demo-card-event>.mdl-card__title, .demo-card-event>.mdl-card__actions,
+	.demo-card-event>.mdl-card__actions>.mdl-button {
+	color: #fff;
 }
