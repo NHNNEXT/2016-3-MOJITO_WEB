@@ -28,6 +28,6 @@ public class ApiMeetingController {
 		meeting.joinMeeting(HttpSessionUtils.getUserFromSession(session));
 		meetingRepository.save(meeting);
 		
-		return meeting.current_participants_number;
+		return meeting.curParticipantNum;
 	}
 }

@@ -1,6 +1,7 @@
 package com.mojito.domain;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -30,15 +31,15 @@ public class Meeting {
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_answer_writer"))
 	private User writer;
 	
-	public LocalDateTime meeting_date;
+	public LocalDateTime meetingDate;
 	
-	public LocalDateTime expire_date;
+	public LocalDateTime expireDate;
 	
 	public String location;
 	
 	public int capacity;
 	
-	public int current_participants_number = 0;
+	public int curParticipantNum = 0;
 	
 	@Lob
 	public String contents;
@@ -91,11 +92,16 @@ public class Meeting {
 	}
 
 	public void setMeetingDate(String day, String time) {
-		this.meeting_date = LocalDateTimeConverter.timeToStringConverter(day + " " + time);
+		this.meetingDate = LocalDateTimeConverter.timeToStringConverter(day + " " + time);
+	}
+	
+	public String getFormattedMeetingDate() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		return meetingDate.format(formatter);
 	}
 	
 	public void setExpireDate(String day, String bomb_time) {
-		this.expire_date = LocalDateTimeConverter.timeToStringConverter(day + " " + bomb_time);
+		this.expireDate = LocalDateTimeConverter.timeToStringConverter(day + " " + bomb_time);
 	}
 	
 	public Set<User> getParticipants() {
@@ -103,16 +109,16 @@ public class Meeting {
 	}
 	
 	public void joinMeeting(User user) {
-		if (capacity <= current_participants_number) {
+		if (capacity <= curParticipantNum) {
 			throw new IllegalStateException("meeting capacity is full");
 		}
 		
 		if (participants.contains(user)) {
 			participants.remove(user);
-			current_participants_number--;
+			curParticipantNum--;
 		} else {
 			participants.add(user);
-			current_participants_number++;
+			curParticipantNum++;
 		}
 	}
 	
@@ -143,8 +149,8 @@ public class Meeting {
 
 	@Override
 	public String toString() {
-		return "Meeting [id=" + id + ", writer=" + writer + ", meeting_date=" + meeting_date + ", expire_date="
-				+ expire_date + ", location=" + location + ", capacity=" + capacity + ", current_participants="
-				+ current_participants_number + ", contents=" + contents + ", createDate=" + createDate + "]";
+		return "Meeting [id=" + id + ", writer=" + writer + ", meeting_date=" + meetingDate + ", expire_date="
+				+ expireDate + ", location=" + location + ", capacity=" + capacity + ", current_participants="
+				+ curParticipantNum + ", contents=" + contents + ", createDate=" + createDate + "]";
 	}
 }

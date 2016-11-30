@@ -15,7 +15,7 @@
   	{{#meetings}}
     <li>
       <div class="meeting">
-				<p class="destroy_time">{{expire_date}}</p>
+				<p class="destroy_time">{{expireDate}}</p>
 				<div class="meeting_thumbnail">
 					<img
 						src="http://tr3.cbsistatic.com/fly/bundles/techrepubliccore/images/icons/standard/icon-user-default.png"
@@ -23,13 +23,13 @@
 				</div>
 				<div class="basic_info">
 					<div class="time">
-						<i class="fa fa-calendar-check-o"></i> <span class="time_text">{{meeting_date}}</span>
+						<i class="fa fa-calendar-check-o"></i> <span class="time_text">{{formattedMeetingDate}}</span>
 					</div>
 					<div class="event_place">
 						<i class="fa fa-map-marker"></i> <span class="event_place_text">{{location}}</span>
 					</div>
 					<div class="participants">
-						<i class="fa fa-user"></i> <span class="current_participants">{{current_participants_number}}</span>
+						<i class="fa fa-user"></i> <span class="current_participants">{{curParticipantNum}}</span>
 						<span>/</span> <span class="overall_participants">{{capacity}}</span>
 					</div>
 				</div>
