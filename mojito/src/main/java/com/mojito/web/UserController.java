@@ -1,8 +1,5 @@
 package com.mojito.web;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mojito.domain.User;
 import com.mojito.domain.UserRepository;
+import com.mojito.utils.FileUploadUtils;
 
 
 @Controller
@@ -89,7 +88,7 @@ public class UserController {
     }
 
     @PostMapping("/{id}/update")
-    public String update(@PathVariable Long id, User updatedUser, String userPasswordConfirm, HttpSession session) {
+    public String update(@PathVariable Long id, User updatedUser, String userPasswordConfirm, MultipartFile userProfileImage, HttpSession session) {
 		if (!HttpSessionUtils.isLoginUser(session)) {
 			return "redirect:/login";
 		}
@@ -101,7 +100,10 @@ public class UserController {
 
 		System.out.println("edit user : " + updatedUser);
 		System.out.println("new password confirm : " + userPasswordConfirm);
-
+		System.out.println("userProfileImage : " + userProfileImage);
+		
+		String filePath = FileUploadUtils.fileUpload(userProfileImage);
+		System.out.println("filePath is... " + filePath);
 		User dbUser = userRepository.findOne(id);
 		System.out.println("user : " + updatedUser);
 		dbUser.update(updatedUser, userPasswordConfirm);
