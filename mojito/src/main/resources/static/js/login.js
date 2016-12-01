@@ -55,7 +55,7 @@ function onError(xhr, status) {
 }
 
 function addSnackbar(errorMessage, actionText, actionHandler) {
-	var snackbarContainer = document.querySelector('#login_status_snackbar');
+	var snackbarContainer = document.querySelector('#login_status_snackbar'); // querySelector는 coverage가 다를 수 있으므로 jQuery $를 사용해서 통일하는 게 더 바람직
 	var data = { message: errorMessage, timeout: 5000, actionHandler: actionHandler, actionText: actionText};
 	snackbarContainer.MaterialSnackbar.showSnackbar(data);
 }

@@ -1,18 +1,15 @@
 $(document).ready(function () {
-	var $requestToUserListBtn = $('#requestToUserListBtn');
-	var $requestToMeListBtn = $('#requestToMeListBtn');
-	var $myFriendListBtn = $('#myFriendListBtn');
-	var $metUserListBtn = $('#metUserListBtn');
+	$(".friend-classify").on('click', function(e){
+		var url = $(e.target).prop('href');
+		e.preventDefault();
+		getRequestedList(url);
+	})
 	
-	$requestToUserListBtn.add($requestToMeListBtn).add($myFriendListBtn).add($metUserListBtn).bind('click', showRequestedList);
-	
-	$requestToUserListBtn.trigger('click');
-	$myFriendListBtn.trigger('click');
+	getRequestedList($('#requestToUserListBtn').prop('href'));
+	getRequestedList($('#myFriendListBtn').prop('href'));
 });
 
-function showRequestedList(e) {
-	var url = $(e.target).attr('href');
-	e.preventDefault();
+function getRequestedList(url) {
 	$.ajax({
 		type: 'get',
 		url: url,
