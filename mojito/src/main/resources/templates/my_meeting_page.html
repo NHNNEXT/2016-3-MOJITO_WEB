@@ -20,11 +20,11 @@
 				</div>
 				<!-- Event card -->
 			
-
+				{{#meetings}}
 				<div class="demo-card-event mdl-card mdl-shadow--2dp">
 					<div class="mdl-card__title mdl-card--expand">
 						<h4>
-							강남에서 술 한잔 하실 분~<br> May 24, 2016 / 7-11pm<br><br>2 hours left to bomb!
+							{{contents}}<br> {{meeting_date}} / 7-11pm<br><br>2 hours left to bomb!
 						</h4>
 
 						
@@ -35,7 +35,7 @@
 							모임 상세보기 </a>
 							
 						<div class="mdl-layout-spacer"></div>
-						<div class="material-icons mdl-badge mdl-badge--overlap" data-badge="4">account_box</div>
+						<div class="material-icons mdl-badge mdl-badge--overlap" data-badge={{capacity}}>account_box</div>
 						<i class="material-icons">event</i>
 						<div id="tt4" class="icon material-icons">share</div>
 						<div class="mdl-tooltip" for="tt4">
@@ -43,6 +43,7 @@
 						</div>
 					</div>
 				</div>
+				{{/meetings}}
 				
 				
 
