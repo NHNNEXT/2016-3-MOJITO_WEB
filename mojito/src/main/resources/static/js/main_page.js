@@ -20,6 +20,9 @@ function joinMeeting(e) {
 		},
 		success: function(data, status) {
 			curNum.html(data);
+			joinBtn.text(function(i, text) {
+				return text === "조인" ? "조인 취소" : "조인";
+			})
 			console.log("success!!!");
 		}
 	});

@@ -64,7 +64,8 @@
 				<div class="article_contents" id="article_capacity">
 					<label class="article_index" for="capacity">모임 정원</label>
 					<div class="mdl-textfield mdl-js-textfield">
-					<input class="mdl-slider mdl-js-slider" type="range" min="1" max="30" value="5" tabindex="0" name="capacity">
+					<input class="mdl-slider mdl-js-slider" type="range" min="1" max="30" value="5" tabindex="0" name="capacity"
+					oninput="amount.value=rangeInput.value">
 					</div>
 					<output name="amount" for="rangeInput">5</output>명
 				</div>
