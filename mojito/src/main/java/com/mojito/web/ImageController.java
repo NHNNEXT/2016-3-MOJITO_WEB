@@ -29,6 +29,6 @@ public class ImageController {
 		Path p = Paths.get(imagePath);
 		byte[] image = Files.readAllBytes(p);
 		return ResponseEntity.ok().contentType(
-				imagePath.substring(imagePath.length() - 2).equals('n') ? MediaType.IMAGE_PNG : MediaType.IMAGE_JPEG).body(image);
+				imagePath.substring(imagePath.length() - 2).equals('n') ? MediaType.IMAGE_PNG : MediaType.IMAGE_JPEG).body(image); // 이미지 형식을 검사해서 해당 MediaType 호출 
 	}
 }

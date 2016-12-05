@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-[[{"location":"/Users/NEXT/sourcetree/2016-3-MOJITO_WEB/mojito","type":"PROJECT","hints":{"PROJECT_NAME":"mojito"}},"com.mojito:mojito:0.1.0"]]
-=======
-{}
->>>>>>> develop
+[[{"location":"/Users/NEXT/.m2/repository/org/springframework/spring-web/4.3.3.RELEASE/spring-web-4.3.3.RELEASE.jar","type":"JAR","hints":{}},"ABSENT"],[{"location":"/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.8"}},"jre:jre:1.8.0"]]

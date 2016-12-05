@@ -12,31 +12,13 @@ public class FileUploadUtils {
 	public static final String filePath = "/Users/NEXT/Desktop/profileImages/"; // 프로젝트 외부 경로
 //	public static final String filePath = "./src/main/resources/static/image/"; // 프로젝트 내부 경로
 	
-    public static final String fileUpload(MultipartFile uploadFile) {
-        InputStream inputStream = null;
-        OutputStream outputStream = null;
+    public static final String fileUpload(MultipartFile uploadFile) throws IOException {
         String fileName = uploadFile.getOriginalFilename();
-        System.out.println(fileName);
 
         File file = new File(filePath + fileName); //path
         System.out.println(file);
-        try{
-            inputStream = uploadFile.getInputStream();
-            System.out.println(inputStream);
+        uploadFile.transferTo(file);
 
-            file.createNewFile();
-            outputStream = new FileOutputStream(file);
-            System.out.println(outputStream);
-
-            int read = 0;
-            byte[] bytes = new byte[1024];
-
-            while((read = inputStream.read(bytes)) != -1) {
-                outputStream.write(bytes, 0, read);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return fileName;
     }
 }

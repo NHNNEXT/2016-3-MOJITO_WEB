@@ -1,5 +1,7 @@
 package com.mojito.web;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,7 +90,7 @@ public class UserController {
     }
 
     @PostMapping("/{id}/update")
-    public String update(@PathVariable Long id, User updatedUser, String userPasswordConfirm, MultipartFile userProfileImage, HttpSession session) {
+    public String update(@PathVariable Long id, User updatedUser, String userPasswordConfirm, MultipartFile userProfileImage, HttpSession session) throws IOException {
 		if (!HttpSessionUtils.isLoginUser(session)) {
 			return "redirect:/login";
 		}
