@@ -30,11 +30,6 @@ public class MeetingController {
 		return "create_article_page";
 	}
 	
-	@GetMapping("/")
-	public String list(){
-		return "my_meeting_page";
-	}
-	
 	@GetMapping("/my")
 	public String my(){
 		return "my_meeting_page";

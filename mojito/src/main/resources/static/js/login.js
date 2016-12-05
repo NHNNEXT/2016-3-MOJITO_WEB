@@ -1,4 +1,4 @@
-$("#loginButton").click(tryLogin);
+$("#loginButton").on("click", tryLogin);
 
 function tryLogin(e) {
 	console.log("login button clicked!");
@@ -59,3 +59,11 @@ function addSnackbar(errorMessage, actionText, actionHandler) {
 	var data = { message: errorMessage, timeout: 5000, actionHandler: actionHandler, actionText: actionText};
 	snackbarContainer.MaterialSnackbar.showSnackbar(data);
 }
+
+$(document).keyup(function(e) {
+	if (e.keyCode == 13) {
+		if (!$("#userEmail").is(":focus")){
+			$("#loginButton").click();			
+		}
+	}
+});
