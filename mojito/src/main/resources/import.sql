@@ -17,6 +17,9 @@ INSERT INTO USER_REQUESTS_TO_USER (user_id, requests_to_user_id) VALUES (3, 6); 
 INSERT INTO USER_REQUESTS_TO_USER (user_id, requests_to_user_id) VALUES (3, 7); -- 재엽이 도형이형에게 친구 요청
 INSERT INTO USER_MET_USERS (user_id, met_users_id) VALUES (3, 2); -- 재엽이 교수님을 만난적이 있음
 
---INSERT INTO MEETING (capacity, contents, current_participants_number, location, writer_id, create_date, expire_date, meeting_date) VALUES (5, '홍대에서 코딩할 건데 같이 하실 분?', 3, '홍대 카페 거리', 1, now(), now(), now());
---INSERT INTO MEETING (capacity, contents, current_participants, location, writer_id) VALUES (8, '강남에서 술 한잔 하실 분~', 5, '맛있는 양꼬치집', 2);
---INSERT INTO MEETING (capacity, contents, current_participants, location, writer_id) VALUES (30, '9x 년생 코더들 다 모여라~', 17, '강남 토즈', 3);
+INSERT INTO MEETING (capacity, contents, location, writer_id, create_date, expire_date, meeting_date) VALUES (5, '홍대에서 코딩할 건데 같이 하실 분?', '홍대 카페 거리', 1, current_timestamp(), current_timestamp(), current_timestamp());
+INSERT INTO MEETING (capacity, contents, location, writer_id, create_date, expire_date, meeting_date) VALUES (8, '강남에서 술 한잔 하실 분~', '맛있는 양꼬치집', 2, current_timestamp(), current_timestamp(), current_timestamp());
+INSERT INTO MEETING (capacity, contents, location, writer_id, create_date, expire_date, meeting_date) VALUES (30, '9x 년생 코더들 다 모여라~', '강남 토즈', 3, current_timestamp(), current_timestamp(), current_timestamp());
+INSERT INTO MEETING (capacity, contents, location, writer_id, create_date, expire_date, meeting_date) VALUES (20, 'spring boot 끝장내기', '강남 토즈', 3, current_timestamp(), current_timestamp(), current_timestamp());
+INSERT INTO MEETING (capacity, contents, location, writer_id, create_date, expire_date, meeting_date) VALUES (30, 'code squad 화이트 라벨 과정', '판교 스타트업 캠퍼스', 4, current_timestamp(), current_timestamp(), current_timestamp());
+INSERT INTO MEETING (capacity, contents, location, writer_id, create_date, expire_date, meeting_date) VALUES (8, '망년회 쎄꼬시로 땡기보까', '횟집 부산 앞바다', 5, current_timestamp(), current_timestamp(), current_timestamp());

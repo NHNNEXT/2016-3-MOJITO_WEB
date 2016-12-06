@@ -25,9 +25,18 @@ public class ApiMeetingController {
 	@GetMapping("/join/{meeting_id}")
 	public int joinMeeting(@PathVariable Long meeting_id, HttpSession session) {
 		Meeting meeting = meetingRepository.findOne(meeting_id);
-		meeting.joinMeeting(HttpSessionUtils.getUserFromSession(session));
+		meeting.join(HttpSessionUtils.getUserFromSession(session));
 		meetingRepository.save(meeting);
 		
-		return meeting.current_participants_number;
+		return meeting.getParticipantSize();
+	}
+	
+	@GetMapping("/cancel/{meeting_id}")
+	public int cancelMeeting(@PathVariable Long meeting_id, HttpSession session) {
+		Meeting meeting = meetingRepository.findOne(meeting_id);
+		meeting.cancel(HttpSessionUtils.getUserFromSession(session));
+		meetingRepository.save(meeting);
+		
+		return meeting.getParticipantSize();
 	}
 }
