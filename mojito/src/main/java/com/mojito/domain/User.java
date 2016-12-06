@@ -53,6 +53,18 @@ public class User {
     @JsonIgnore
     private Set<User> metUsers;
 
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY) 
+    @JsonIgnore
+    private Set<Meeting> joinedMeetings;
+    
+    public void joinMeeting(Meeting m) { // user가 모임에 참가할 때 모임도 joinedMeetings 에 추가
+    	joinedMeetings.add(m);
+    }
+    
+    public Set<Meeting> getJoinedMeetings() {
+    	return joinedMeetings;
+    }
+    
 	public String getUserEmail() {
 		return userEmail;
 	}
