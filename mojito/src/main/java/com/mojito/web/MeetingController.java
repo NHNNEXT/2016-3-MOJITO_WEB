@@ -41,11 +41,7 @@ public class MeetingController {
 		User sessionedUser = (User)session.getAttribute(HttpSessionUtils.USER_SESSION_KEY);
 		User loginUser = userRepository.findOne(sessionedUser.getId());
 		
-		List<Meeting> joinedMeetingList = new ArrayList<>();
-		for (Meeting meeting : loginUser.getJoinedMeetings()) {
-			joinedMeetingList.add(meeting);
-		}
-		model.addAttribute("meetings", joinedMeetingList);
+		model.addAttribute("meetings", loginUser.getJoinedMeetings());
 		return "my_meeting_page";
 	}
 	

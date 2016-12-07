@@ -5,6 +5,19 @@ INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('최원영', '1@
 INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('권용재', '2@gmail.com', '2');
 INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('장우현', '3@gmail.com', '3');
 INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('이도형', '4@gmail.com', '4');
+INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('전용우', '5@gmail.com', '5');
+INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('김광영', '6@gmail.com', '6');
+INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('이근원', '7@gmail.com', '7');
+INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('고금성', '8@gmail.com', '8');
+INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('김현우', '9@gmail.com', '9');
+INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('서은희', '10@gmail.com', '10');
+INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('구은희', '11@gmail.com', '11');
+INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('이익훈', '12@gmail.com', '12');
+INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('김동진', '13@gmail.com', '13');
+INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('조은종', '14@gmail.com', '14');
+INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('배영현', '15@gmail.com', '15');
+INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('김종규', '16@gmail.com', '16');
+INSERT INTO USER (user_Name, user_Email, user_Password) VALUES ('김지환', '17@gmail.com', '17');
 
 -- TEST DATA --
 INSERT INTO USER_FRIEND_USERS (user_id, friend_users_id) VALUES (3, 4); -- 재엽, 원영 친구관계

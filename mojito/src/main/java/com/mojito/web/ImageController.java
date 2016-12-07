@@ -21,14 +21,15 @@ import com.mojito.utils.FileUploadUtils;
 public class ImageController {
 	@Autowired
 	UserRepository userRepository;
-	
+		
 	@RequestMapping(value = "/images/{id}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException {
 		User user = userRepository.findOne(id);
-		String imagePath = FileUploadUtils.filePath + user.getProfileImageName();
+		String imagePath = FileUploadUtils.filePath + (user.getProfileImageName() == null ? "default.png" : user.getProfileImageName());
 		Path p = Paths.get(imagePath);
 		byte[] image = Files.readAllBytes(p);
 		return ResponseEntity.ok().contentType(
-				imagePath.substring(imagePath.length() - 2).equals('n') ? MediaType.IMAGE_PNG : MediaType.IMAGE_JPEG).body(image); // 이미지 형식을 검사해서 해당 MediaType 호출 
+			imagePath.substring(imagePath.length() - 2).equals('n') ? MediaType.IMAGE_PNG : MediaType.IMAGE_JPEG).body(image); // 이미지 형식을 검사해서 해당 MediaType 호출 
+
 	}
 }
