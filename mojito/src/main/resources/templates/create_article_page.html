@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en_US" xml:lang="en_US">
 <head>
 {{> /include/head}}
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <link rel="stylesheet" href="../css/create_article_page.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
@@ -46,25 +47,17 @@
 
 				<div class="article_contents" id="article_location_atrea">
 					<label class="article_index"for="location">장소 선택</label>
-					<div class="mdl-textfield mdl-js-textfield">
-						<input class="mdl-textfield__input" type="text" id="location" name="location">
-						<label class="mdl-textfield__label" for="location"></label>
-						<label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
-					      <i class="material-icons">search</i>
-					    </label>
-					</div>
-					<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2"> 
-						<input type="checkbox" id="checkbox-2" class="mdl-checkbox__input" name="meeting_no_location"> 
-						<span class="mdl-checkbox__label">장소 없음/미정</span></label>
-						<iframe width="600" height="450" frameborder="0" style="border: 0"
-								src="https://www.google.com/maps/embed/v1/search?q=Seoul&key=AIzaSyC7FOJMYs0GvlYdn97cqrRQnqS8LynVzJs"
-								allowfullscreen> </iframe>
+						<input type="text" id="location" value="" name="location">
+						<input type="text" id="locationCoordinates" value="" name="locationCoordinates">
+					    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+					    <div id="map"></div>
 				</div>
 				
 				<div class="article_contents" id="article_capacity">
 					<label class="article_index" for="capacity">모임 정원</label>
 					<div class="mdl-textfield mdl-js-textfield">
-					<input class="mdl-slider mdl-js-slider" type="range" min="1" max="30" value="5" tabindex="0" name="capacity">
+					<input class="mdl-slider mdl-js-slider" type="range" id="rangeInput" min="1" max="30" value="5" 
+					tabindex="0" name="capacity" oninput="amount.value=rangeInput.value">
 					</div>
 					<output name="amount" for="rangeInput">5</output>명
 				</div>
@@ -100,11 +93,11 @@
 	</div>
 	</main>
 	</div>
-	<script
-		src="http://maps.google.co.kr/maps?file=api&amp;v=2&amp;key=AIzaSyC7FOJMYs0GvlYdn97cqrRQnqS8LynVzJs"
-		type="text/javascript"></script>
-	<script src="/js/maps.js"></script>
+	
 	<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+	<script src="/js/maps.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7FOJMYs0GvlYdn97cqrRQnqS8LynVzJs&libraries=places&callback=initAutocomplete"
+         ></script>
 	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 </body>
 </html>

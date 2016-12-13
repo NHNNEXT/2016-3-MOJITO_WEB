@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mojito.utils.FileUploadUtils;
 
 @Entity
 public class User {
@@ -31,23 +32,39 @@ public class User {
 	@Column(nullable = false)
     @JsonProperty
     private String userName;
+	
+	@Column(nullable = true)
+	@JsonProperty
+	private String profileImageName;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<User> friendUsers;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<User> requestsToUser;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<User> requestsToMe;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<User> metUsers;
 
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY) 
+    @JsonIgnore
+    private Set<Meeting> joinedMeetings;
+    
+    public void joinMeeting(Meeting m) { // user가 모임에 참가할 때 모임도 joinedMeetings 에 추가
+    	joinedMeetings.add(m);
+    }
+    
+    public Set<Meeting> getJoinedMeetings() {
+    	return joinedMeetings;
+    }
+    
 	public String getUserEmail() {
 		return userEmail;
 	}
@@ -64,6 +81,10 @@ public class User {
 		this.userName = userName;
 	}
 	
+	public void setProfileImageName(String profileImagePath) {
+		this.profileImageName = profileImagePath;
+	}
+	
 	public Set<User> getFriendUsers() {
 		return friendUsers;
 	}
@@ -78,6 +99,10 @@ public class User {
 	
 	public Set<User> getMetUsers() {
 		return metUsers;
+	}
+	
+	public String getProfileImageName() {
+		return profileImageName;
 	}
 	
     @Override
@@ -129,5 +154,9 @@ public class User {
 		if (updatedUser.userPassword.equals(userPasswordConfirm)) {
 			this.userPassword = updatedUser.userPassword;
 		}
+	}
+
+	public Long getId() {
+		return id;
 	}
 }
