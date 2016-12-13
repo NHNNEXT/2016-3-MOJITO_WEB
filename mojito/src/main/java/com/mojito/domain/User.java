@@ -34,7 +34,7 @@ public class User {
     private String userName;
 	
 	@Column(nullable = true)
-	@JsonProperty
+	@JsonIgnore
 	private String profileImageName;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

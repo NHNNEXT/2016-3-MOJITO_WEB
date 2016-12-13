@@ -1,17 +1,35 @@
 $(document).ready(function () {
-	var $requestToUserListBtn = $('#requestToUserListBtn');
-	var $requestToMeListBtn = $('#requestToMeListBtn');
-	var $myFriendListBtn = $('#myFriendListBtn');
-	var $metUserListBtn = $('#metUserListBtn');
+	var $listBtn = $('.friend-classify');
 	
-	$requestToUserListBtn.add($requestToMeListBtn).add($myFriendListBtn).add($metUserListBtn).bind('click', showRequestedList);
+	$listBtn.on('click', showRequestedList);
 	
-	$requestToUserListBtn.trigger('click');
-	$myFriendListBtn.trigger('click');
+	$('#requestToUserListBtn').trigger("click");
+	$('#myFriendListBtn').trigger("click");
+	
+	var $searchBtn = $('searchValue');
+	$searchBtn.on('click', searchByUserName);
 });
 
+function searchByUserName(e) {
+	var url = $(e.target).prop('href');
+	e.preventDefault();
+	$.ajax({
+		type: 'post',
+		url: url,
+		dataType: 'json',
+		error: onError,
+		success: showSearchResult
+	})
+}
+
+function showSearchResult(data, status) {
+	console.log(data);
+	
+}
+
 function showRequestedList(e) {
-	var url = $(e.target).attr('href');
+	console.log(e);
+	var url = $(e.target).prop('href');
 	e.preventDefault();
 	$.ajax({
 		type: 'get',

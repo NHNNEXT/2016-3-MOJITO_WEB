@@ -7,15 +7,16 @@
 <body>
 {{> /include/header}}
 <main class="main__content">
+	<form id="searchForm" action="/api/user/search" method="post">
 	<div class="friend-searchbar main-center-align">
 		<label for="searchValue"></label>
 		<input type="text" placeholder="친구를 검색 하세요!" id="searchValue" name="searchValue" autofocus/>
 		<button>검 색</button>
 	</div>
-
+	</form>
   <div class="friend-request-box">
     <div class="friend-classify-list">
-      <a id="requestToUserListBtn" class="friend-classify" href="/api/user/show/1"style="border-right: 1px solid #C4C4C4 ;">내가 한 친구 요청</a>
+      <a id="requestToUserListBtn" class="friend-classify" href="/api/user/show/1" style="border-right: 1px solid #C4C4C4 ;">내가 한 친구 요청</a>
       <a id="requestToMeListBtn" class="friend-classify" href="/api/user/show/2">내게 온 친구 요청</a>
       <div class="friend-request-list">
       </div>
@@ -24,7 +25,7 @@
 
   <div class="friend-list-box">
     <div class="friend-classify-list">
-	  <a id="myFriendListBtn" class="friend-classify" href="/api/user/show/3"style="border-right: 1px solid #C4C4C4 ;">내 친구 목록</a>
+	  <a id="myFriendListBtn" class="friend-classify" href="/api/user/show/3" style="border-right: 1px solid #C4C4C4 ;">내 친구 목록</a>
 	  <a id="metUserListBtn" class="friend-classify" href="/api/user/show/4">모임에서 만난 사람</a>
 	</div>
 	<div class="friend-list">
@@ -75,6 +76,9 @@
 </script>
 <script type="text/html" id="non-list">
   <p class="request-friend-nothing">유저가 없습니다!</p>
+</script>
+<script type="text/html" id="search-result">
+	<div class
 </script>
 
 <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
