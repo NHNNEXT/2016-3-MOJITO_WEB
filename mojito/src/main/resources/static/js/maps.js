@@ -24,7 +24,8 @@ function initAutocomplete() {
   // more details for that place.
   searchBox.addListener('places_changed', function() {
     var places = searchBox.getPlaces();
-   	document.getElementById("location").value=places[0].geometry.location;
+   	document.getElementById("location").value=places[0].formatted_address;
+   	document.getElementById("locationCoordinates").value=places[0].geometry.location;
 
     if (places.length == 0) {
       return;
