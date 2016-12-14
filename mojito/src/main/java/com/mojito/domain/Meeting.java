@@ -2,6 +2,7 @@ package com.mojito.domain;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -45,7 +46,7 @@ public class Meeting {
 	public String contents;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // 자세히 보기
-	private Set<User> participants;
+	private Set<User> participants = new HashSet<User>();
 
 	private LocalDateTime createDate;
 
@@ -59,6 +60,12 @@ public class Meeting {
 		this.capacity = capacity;
 		this.contents = contents;
 		this.createDate = LocalDateTime.now();
+	}
+	
+	
+
+	public Long getId() {
+		return id;
 	}
 
 	public void setCreateDate(LocalDateTime createDate) {
@@ -99,6 +106,8 @@ public class Meeting {
 
 	public void setWriter(User writer) {
 		this.writer = writer;
+		this.participants.add(writer);
+//		writer.joinMeeting(this);
 	}
 
 	public void setMeetingDate(String day, String time) {
