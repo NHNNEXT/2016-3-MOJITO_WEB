@@ -24,18 +24,16 @@
 				<div class="demo-card-event mdl-card mdl-shadow--2dp">
 					<div class="mdl-card__title mdl-card--expand">
 						<h4>
-							{{contents}}<br> May 24, 2016 / 7-11pm<br><br>2 hours left to bomb!
-						</h4>
+							{{contents}}<br> {{meetingDate}} / 7-11pm<br>{{location}}<br><br>2 hours left to bomb!
 
-						
 					</div>
 					<div class="mdl-card__actions mdl-card--border">
-						<a
-							class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+						<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
 							모임 상세보기 </a>
 							
 						<div class="mdl-layout-spacer"></div>
-						<div class="material-icons mdl-badge mdl-badge--overlap" data-badge="4">account_box</div>
+						<div class="material-icons mdl-badge mdl-badge--overlap" data-badge={{capacity}}>account_box</div>
+
 						<i class="material-icons">event</i>
 						<div id="tt4" class="icon material-icons">share</div>
 						<div class="mdl-tooltip" for="tt4">
@@ -44,6 +42,8 @@
 					</div>
 				</div>
 				{{/meetings}}
+
+				
 				
 
 
