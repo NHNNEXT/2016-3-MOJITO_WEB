@@ -10,10 +10,17 @@
 	<form id="searchForm" action="/api/user/search" method="post">
 	<div class="friend-searchbar main-center-align">
 		<label for="searchValue"></label>
-		<input type="text" placeholder="친구를 검색 하세요!" id="searchValue" name="searchValue" autofocus/>
-		<button>검 색</button>
+		<input type="text" placeholder="친구를 검색 하세요!" id="searchValue" name="userName" autofocus/>
+		<button type="button" id="searchBtn">검 색</button>
 	</div>
 	</form>
+  <div class="friend-search-result-box">
+  	<div class="friend-classify-list">
+  	  <span class="friend-classify">검색 결과</span>
+      <div class="friend-search-list">
+      </div>
+    </div>
+  </div>	
   <div class="friend-request-box">
     <div class="friend-classify-list">
       <a id="requestToUserListBtn" class="friend-classify" href="/api/user/show/1" style="border-right: 1px solid #C4C4C4 ;">내가 한 친구 요청</a>

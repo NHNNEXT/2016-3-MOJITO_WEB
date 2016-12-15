@@ -6,29 +6,29 @@ $(document).ready(function () {
 	$('#requestToUserListBtn').trigger("click");
 	$('#myFriendListBtn').trigger("click");
 	
-	var $searchBtn = $('searchValue');
+	var $searchBtn = $('#searchBtn');
 	$searchBtn.on('click', searchByUserName);
 });
 
 function searchByUserName(e) {
-	var url = $(e.target).prop('href');
+	var url = $('#searchForm').prop('action');
+	var search = {
+			"userName" : $("#searchValue").val()
+	}
+	console.log(search);
+	console.log(url);
 	e.preventDefault();
 	$.ajax({
 		type: 'post',
 		url: url,
+		data: search,
 		dataType: 'json',
 		error: onError,
-		success: showSearchResult
+		success: printRequestedList
 	})
 }
 
-function showSearchResult(data, status) {
-	console.log(data);
-	
-}
-
 function showRequestedList(e) {
-	console.log(e);
 	var url = $(e.target).prop('href');
 	e.preventDefault();
 	$.ajax({
@@ -57,6 +57,8 @@ function printRequestedList(data, status) {
         }
     } 
 }
+
+
 
 function onError(data, status) {
     console.log('onError execute!');

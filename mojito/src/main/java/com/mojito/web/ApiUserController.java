@@ -1,5 +1,6 @@
 package com.mojito.web;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mojito.domain.LoginResult;
@@ -73,5 +75,12 @@ public class ApiUserController {
     	}
     	
     	throw new IllegalStateException("Invalid List Request");
+    }
+    
+    @PostMapping("/search")
+    public RequestedListResult showSearchResult(@RequestParam String userName) {
+    	System.out.println("넘어온 값 : " + userName);
+    	Set<User> result = userRepository.findByUserName(userName);
+    	return RequestedListResult.getSearchResult(result);
     }
 }

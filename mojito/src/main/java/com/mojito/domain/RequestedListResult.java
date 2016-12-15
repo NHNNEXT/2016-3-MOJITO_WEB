@@ -50,4 +50,9 @@ public class RequestedListResult {
 		return new RequestedListResult(user.getMetUsers(), ".friend-list",
 				"#metUser", ".friend-list-box");
 	}
+	
+	public static RequestedListResult getSearchResult(Set<User> result) {
+		return new RequestedListResult(result, ".friend-search-list",
+				"#metUser", ".friend-search-result-box");
+	}
 }

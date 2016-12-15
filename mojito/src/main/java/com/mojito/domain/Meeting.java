@@ -1,7 +1,7 @@
 package com.mojito.domain;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.Type;
 
 import com.mojito.utils.DateTimeUtils;
 import com.mojito.web.LocalDateTimeConverter;
@@ -42,8 +40,8 @@ public class Meeting {
 	@Lob
 	public String contents;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // 자세히 보기
-	private Set<User> participants;
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<User> participants = new HashSet<User>();
 
 	private LocalDateTime createDate;
 
@@ -88,6 +86,8 @@ public class Meeting {
 
 	public void setWriter(User writer) {
 		this.writer = writer;
+		this.participants.add(writer);
+		writer.joinMeeting(this);
 	}
 
 	public void setMeetingDate(String day, String time) {
@@ -124,7 +124,11 @@ public class Meeting {
 	public void cancel(User user) {
 		participants.remove(user);
 	}
-
+	
+	public Long getId() {
+		return id;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -52,13 +52,13 @@ public class MeetingController {
 			throw new IllegalStateException("session user id not match with new article request user id!");
 		}
 		
+		User user = userRepository.findOne(id);
 		meeting.setMeetingDate(day, time);
 		meeting.setExpireDate(day, bomb_time);
 		meeting.setCreateDate(LocalDateTime.now());
-		meeting.setWriter(sessionUser);
-		
-		System.out.println(meeting);
+		meeting.setWriter(user);
 		meetingRepository.save(meeting);
+		
 		return "redirect:/";
 	}
 }

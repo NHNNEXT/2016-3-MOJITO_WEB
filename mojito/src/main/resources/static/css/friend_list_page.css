@@ -45,7 +45,7 @@ main {
   color: #B7B7B7;
 }
 
-.friend-list-box, .friend-request-box {
+.friend-list-box, .friend-request-box, .friend-search-result-box {
   margin: 1em auto;
   width: 860px;
   height: 200px;
