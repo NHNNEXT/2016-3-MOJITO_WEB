@@ -23,11 +23,12 @@
 				{{#meetings}}
 				<div class="demo-card-event mdl-card mdl-shadow--2dp">
 					<div class="mdl-card__title mdl-card--expand">
-						<h4>
-							{{contents}}<br> {{meetingDate}} / 7-11pm<br>{{location}}<br><br>2 hours left to bomb!
-
+						<h4>{{contents}}<br> 
+						<!-- {{meetingDate}} / 7-11pm<br> -->
+						<div class='meetingTime' id='meetingTime'></div>{{location}}<br>
+						<div class='leftTime' id='leftTime'></div>
 					</div>
-					
+					<input type= "hidden" id="meetingDate" value="{{meetingDate}}">
 					<div class="mdl-card__actions mdl-card--border">
 						<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
 							모임 상세보기 </a>
@@ -43,18 +44,12 @@
 					</div>
 				</div>
 				{{/meetings}}
-
-				<div id="text1"></div>
-				<div id="text2"></div>
-				
-
-
-
 			</div>
 	</main>
 	</div>
 	<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
 	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-	<script src="/js/timeCalc.js"></script>
+	<script src="/js/card_color.js"></script>
+	<script src="/js/time_calc.js"></script>
 </body>
 </html>
