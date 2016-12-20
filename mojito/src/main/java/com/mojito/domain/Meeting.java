@@ -34,6 +34,8 @@ public class Meeting {
 	public LocalDateTime expireDate;
 
 	public String location;
+	
+	public String locationCoordinates;
 
 	public int capacity;
 
@@ -48,9 +50,10 @@ public class Meeting {
 	public Meeting() {
 	}
 
-	public Meeting(User writer, String location, int capacity, String contents) {
+	public Meeting(User writer, String location, String locationCoordinates, int capacity, String contents) {
 		this.writer = writer;
 		this.location = location;
+		this.locationCoordinates = locationCoordinates;
 		this.capacity = capacity;
 		this.contents = contents;
 		this.createDate = LocalDateTime.now();
@@ -66,6 +69,14 @@ public class Meeting {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public String getLocationCoordinates() {
+		return locationCoordinates;
+	}
+
+	public void setLocationCoordinates(String locationCoordinates) {
+		this.locationCoordinates = locationCoordinates;
 	}
 
 	public int getCapacity() {
