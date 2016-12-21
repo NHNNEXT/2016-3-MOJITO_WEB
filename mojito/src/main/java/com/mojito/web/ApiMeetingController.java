@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mojito.domain.JoinMeetingResult;
 import com.mojito.domain.Meeting;
 import com.mojito.domain.MeetingRepository;
+import com.mojito.domain.User;
 import com.mojito.domain.UserRepository;
 
 @RestController
@@ -24,10 +25,24 @@ public class ApiMeetingController {
 	
 	@GetMapping("/join/{meeting_id}")
 	public int joinMeeting(@PathVariable Long meeting_id, HttpSession session) {
+		User sessionedUser = (User)session.getAttribute(HttpSessionUtils.USER_SESSION_KEY);
+		User loginUser = userRepository.findOne(sessionedUser.getId()); // lazy initialization
 		Meeting meeting = meetingRepository.findOne(meeting_id);
-		meeting.joinMeeting(HttpSessionUtils.getUserFromSession(session));
+		
+		meeting.join(HttpSessionUtils.getUserFromSession(session));
+		loginUser.joinMeeting(meeting);
+		
 		meetingRepository.save(meeting);
 		
-		return meeting.current_participants_number;
+		return meeting.getParticipantSize();
+	}
+	
+	@GetMapping("/cancel/{meeting_id}")
+	public int cancelMeeting(@PathVariable Long meeting_id, HttpSession session) {
+		Meeting meeting = meetingRepository.findOne(meeting_id);
+		meeting.cancel(HttpSessionUtils.getUserFromSession(session));
+		meetingRepository.save(meeting);
+		
+		return meeting.getParticipantSize();
 	}
 }

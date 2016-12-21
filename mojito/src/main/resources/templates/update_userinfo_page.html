@@ -12,7 +12,7 @@
       <div class="mdl-card__title">
       </div>
       {{#sessionedUser}}
-      <form id="userEditForm" action="/{{id}}/update" method="post">
+      <form id="userEditForm" action="/{{id}}/update" method="post" ENCTYPE="multipart/form-data">
         <div class="mdl-card__supporting-text">
 			
           <div class="signup_label">이름</div>
@@ -29,6 +29,11 @@
           <div class="mdl-textfield mdl-js-textfield">
             <label class="mdl-textfield__label" for="userPasswordConfirm">password confirm</label>
             <input class="mdl-textfield__input" type="password" id="userPasswordConfirm" name="userPasswordConfirm">
+          </div>
+          <div class="signup_label">파일 첨부</div>
+          <div class="mdl-textfield mdl-js-textfield">
+            <label class="mdl-textfield__label" for="userProfileImageUpload"></label>
+            <input class="mdl-textfield__input" type="file" id="userProfileImageUpload" name="userProfileImage">
           </div>
 
         </div>

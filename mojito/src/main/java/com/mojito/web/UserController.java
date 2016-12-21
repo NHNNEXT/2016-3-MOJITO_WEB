@@ -1,25 +1,23 @@
 package com.mojito.web;
 
-import java.util.Iterator;
-import java.util.Set;
+import java.io.IOException;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mojito.domain.User;
 import com.mojito.domain.UserRepository;
+import com.mojito.utils.FileUploadUtils;
 
 
 @Controller
-public class UserController {
-	
+public class UserController {	
 	@Autowired
 	private UserRepository userRepository;
 
@@ -92,7 +90,7 @@ public class UserController {
     }
 
     @PostMapping("/{id}/update")
-    public String update(@PathVariable Long id, User updatedUser, String userPasswordConfirm, HttpSession session) {
+    public String update(@PathVariable Long id, User updatedUser, String userPasswordConfirm, MultipartFile userProfileImage, HttpSession session) throws IOException {
 		if (!HttpSessionUtils.isLoginUser(session)) {
 			return "redirect:/login";
 		}
@@ -102,56 +100,55 @@ public class UserController {
 			throw new IllegalStateException("You can't change other user's information.");
 		}
 
-		System.out.println("edit user : " + updatedUser);
-		System.out.println("new password confirm : " + userPasswordConfirm);
-
+		String filePath = FileUploadUtils.fileUpload(userProfileImage);
 		User dbUser = userRepository.findOne(id);
 		System.out.println("user : " + updatedUser);
 		dbUser.update(updatedUser, userPasswordConfirm);
+		dbUser.setProfileImageName(filePath);
 		userRepository.save(dbUser);
 
 		return "redirect:/logout";
 	}
     
+    private String processRequest(Long id, HttpSession session, UserOperations userOperations) {
+    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
+    	User requestUser = userRepository.findOne(id);
+    	userOperations.process(sessionedUser, requestUser);
+    	userRepository.save(sessionedUser);
+    	return "redirect:/friends";
+    }
+    
     @GetMapping("cancel/requestToUser/{id}")
 	public String deleteRequestToUser(@PathVariable Long id, HttpSession session) {
-		User sessionedUser = HttpSessionUtils.getUserFromSession(session);
-		User toDeleteRequest = userRepository.findOne(id);
-		sessionedUser.getRequestsToUser().remove(toDeleteRequest);
-		userRepository.save(sessionedUser);
-    	
-    	return "redirect:/friends";
-	}
-    
+    	return processRequest(id, session, (User sessionedUser, User requestUser) -> {
+    			sessionedUser = userRepository.findOne(sessionedUser.getId());
+				sessionedUser.getRequestsToUser().remove(requestUser);
+			});
+    }
+	
     @GetMapping("/confirm/requestToMe/{id}")
     public String confirmRequestToMe(@PathVariable Long id, HttpSession session) {
-    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
-    	User toConfirmRequest = userRepository.findOne(id);
-    	sessionedUser.getRequestsToMe().remove(toConfirmRequest);
-    	sessionedUser.getFriendUsers().add(toConfirmRequest);
-    	userRepository.save(sessionedUser);
-    	
-    	return "redirect:/friends";
+    	return processRequest(id, session, (User sessionedUser, User requestUser) -> {
+			sessionedUser = userRepository.findOne(sessionedUser.getId());
+			sessionedUser.getRequestsToMe().remove(requestUser);
+			sessionedUser.getFriendUsers().add(requestUser);
+		});
     }
     
     @GetMapping("/deleteFriend/{id}")
     public String deleteFriend(@PathVariable Long id, HttpSession session) {
-    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
-    	User toDelete = userRepository.findOne(id);
-    	sessionedUser.getFriendUsers().remove(toDelete);
-    	userRepository.save(sessionedUser);
-    	
-    	return "redirect:/friends";
+    	return processRequest(id, session, (User sessionedUser, User requestUser) -> {
+			sessionedUser = userRepository.findOne(sessionedUser.getId());
+			sessionedUser.getFriendUsers().remove(requestUser);
+		});
     }
     
     @GetMapping("/requestToMet/{id}")
     public String requestToMet(@PathVariable Long id, HttpSession session) {
-    	User sessionedUser = HttpSessionUtils.getUserFromSession(session);
-    	User requestToMet = userRepository.findOne(id);
-    	sessionedUser.getMetUsers().remove(requestToMet);
-    	sessionedUser.getRequestsToUser().add(requestToMet);
-    	userRepository.save(sessionedUser);
-    	
-    	return "redirect:/friends";
+    	return processRequest(id, session, (User sessionedUser, User requestUser) -> {
+			sessionedUser = userRepository.findOne(sessionedUser.getId());
+			sessionedUser.getMetUsers().remove(requestUser);
+			sessionedUser.getRequestsToUser().add(requestUser);
+		});
     }
 }

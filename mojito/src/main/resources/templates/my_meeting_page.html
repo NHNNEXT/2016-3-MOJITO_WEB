@@ -2,37 +2,54 @@
 <html lang="en">
 <head>
 {{> /include/head}}
+<link rel="stylesheet" href="/css/my_meeting_page.css">
 </head>
 
 <body>
 	{{> /include/header}}
-		<main class="mdl-layout__content">
-		<div class="page-content view_detail_model">
-			<!-- Main Card -->
-			<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+				<div class="container">
+				<h1>내 모임</h1>
+				<div class="sorting_index">
+					<button class="mdl-button mdl-js-button mdl-button--primary">
+					  최신순
+					</button>
 
-				<div class="mdl-layout">
-					<p id="show_my_meeting">내 모임 보기</p>
-					<div class="meeting_category">
-						<img class="friend_picture" alt="" src="../image/friend_picture.png">
-						<table class="meeting_information">
-							<tr>
-								<td>2016/9/10 14:00</td>
-								<td>홍대 스타벅스</td>
-							</tr>
-							<tr>
-								<td>4/5</td>
-							</tr>
-						</table>
-						<p class="meeting_detail">홍대 카페에서 공부할거예요!<br>같이 할 사람?</p>
-						<p class="meeting_hash_tag">#개발개발 #코딩 #카페 #같이해요</p>
+					<button class="mdl-button mdl-js-button mdl-button--accent">
+					  마감 임박순
+					</button>
+				</div>
+				<!-- Event card -->
+			
+				{{#meetings}}
+				<div class="demo-card-event mdl-card mdl-shadow--2dp">
+					<div class="mdl-card__title mdl-card--expand">
+						<h4>{{contents}}<br> 
+						<!-- {{meetingDate}} / 7-11pm<br> -->
+						<div class='meetingTime' id='meetingTime'></div>{{location}}<br>
+						<div class='leftTime' id='leftTime'></div>
+					</div>
+					<input type= "hidden" id="meetingDate" value="{{meetingDate}}">
+					<div class="mdl-card__actions mdl-card--border">
+						<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+							모임 상세보기 </a>
+							
+						<div class="mdl-layout-spacer"></div>
+						<div class="material-icons mdl-badge mdl-badge--overlap" data-badge={{capacity}}>account_box</div>
+
+						<i class="material-icons">event</i>
+						<div id="tt4" class="icon material-icons">share</div>
+						<div class="mdl-tooltip" for="tt4">
+						Share your content<br>via social media
+						</div>
 					</div>
 				</div>
+				{{/meetings}}
 			</div>
-		</div>
-		</main>
+	</main>
 	</div>
 	<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
 	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+	<script src="/js/card_color.js"></script>
+	<script src="/js/time_calc.js"></script>
 </body>
 </html>
